@@ -344,6 +344,27 @@ app.get('/api/articles/:slug', async (req, res) => {
   }
 });
 
+
+//sitemap
+async function generateSitemap() {
+  try {
+    const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
+    const result = await executeQuery('SELECT slug, updated_at, published_at FROM articles WHERE is_published = true');
+    const articles = result.rows;
+    const urls = articles.map(article => {
+      const lastmod = article.updated_at || article.published_at || new Date().toISOString();
+      return `    <url>\n      <loc>${siteUrl}/articles/${article.slug}.html</loc>\n      <lastmod>${new Date(lastmod).toISOString()}</lastmod>\n      <changefreq>weekly</changefreq>\n      <priority>0.8</priority>\n    </url>`;
+    }).join('\n');
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+    const sitemapPath = path.join(__dirname, 'sitemap.xml');
+    fs.writeFileSync(sitemapPath, sitemap, 'utf8');
+    console.log('✅ تم إنشاء ملف sitemap.xml');
+    return sitemapPath;
+  } catch (error) {
+    console.error('❌ خطأ في إنشاء ملف sitemap.xml:', error);
+  }
+}
+
 // تسجيل الدخول للوحة التحكم
 app.post('/api/login', async (req, res) => {
   try {
