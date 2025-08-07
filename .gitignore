@@ -1,0 +1,11 @@
+# Generated article files
+/articles/
+*.html
+!index.html
+!article.html
+!admin/index.html
+!pages/*.html
+!templates/*.html
+
+# Note: index.html is now generated automatically, but we keep it in git
+# to ensure the site works even if generation fails 

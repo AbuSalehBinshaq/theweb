@@ -1,0 +1,10 @@
+هذا المجلد مخصص لصور الموقع
+
+يمكنك إضافة الصور التالية:
+- saudi-league.jpg
+- champions-league.jpg
+- world-cup.jpg
+- transfer-news.jpg
+- women-football.jpg
+
+أو استخدام أي صور أخرى تريدها للمقالات. 

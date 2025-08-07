@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أخبار الرياضة - كسرة - KASRAH</title>
+    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="language-switch">
+                <button class="lang-btn" onclick="toggleLanguage()">
+                    <i class="fas fa-globe"></i>
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+            
+            <div class="logo">
+                <h1><a href="../../index.html" style="color: white; text-decoration: none;">كسرة - KASRAH</a></h1>
+            </div>
+            
+            <div class="search-icon">
+                <button class="search-btn" onclick="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-bar" id="searchBar">
+            <input type="text" placeholder="ابحث في الأخبار..." id="searchInput">
+            <button onclick="searchArticles()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 style="text-align: center; color: #1e3c72; margin-bottom: 2rem;">أخبار الرياضة</h1>
+            <div class="articles-grid" id="articlesGrid">
+                <!-- المقالات ستُحمل هنا -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bottom-nav">
+        <a href="../../index.html">
+            <i class="fas fa-house"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="/pages/news/index.html" class="active">
+            <i class="fas fa-newspaper"></i>
+            <span>أخبار</span>
+        </a>
+        <a href="/pages/competitions.html">
+            <i class="fas fa-trophy"></i>
+            <span>بطولات</span>
+        </a>
+        <a href="/pages/favorites.html">
+            <i class="fas fa-heart"></i>
+            <span>المفضلة</span>
+        </a>
+        <a href="/pages/more.html">
+            <i class="fas fa-bars"></i>
+            <span>المزيد</span>
+        </a>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html> 

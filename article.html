@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كسرة - KASRAH | مقال</title>
+    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta property="og:image" content="/assets/images/logo.png">
+    <meta property="og:url" content="/">
+    <link rel="canonical" href="/">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            margin-bottom: 100px;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .article-content h1, .article-content h2, .article-content h3 {
+            color: #1e3a8a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .share-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .share-facebook { background: #1877f2; }
+        .share-twitter { background: #1da1f2; }
+        .share-whatsapp { background: #25d366; }
+        .share-telegram { background: #0088cc; }
+
+        /* الإعلانات في صفحة المقال */
+        .article-ad {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .article-ad::before {
+            content: 'إعلان';
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* تحسينات للتصميم المتجاوب */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .share-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="language-toggle" id="languageToggle" onclick="toggleLanguage()">
+                <span id="lang-text">EN</span>
+            </div>
+            <div class="logo">
+                <h1 id="site-title">كسرة - KASRAH</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-bar" id="searchBar">
+                    <input type="text" id="searchInput" placeholder="البحث في المقالات...">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div id="articleContainer" class="article-container">
+            <div class="loading" id="loading-text">جاري تحميل المقال...</div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bottom-nav">
+        <a href="/"><i class="fas fa-house"></i><span id="nav-home">الرئيسية</span></a>
+        <a href="/pages/news/index.html"><i class="fas fa-newspaper"></i><span id="nav-news">أخبار</span></a>
+        <a href="/pages/competitions.html"><i class="fas fa-trophy"></i><span id="nav-competitions">بطولات</span></a>
+        <a href="/pages/favorites.html"><i class="fas fa-heart"></i><span id="nav-favorites">المفضلة</span></a>
+        <a href="/pages/more.html"><i class="fas fa-bars"></i><span id="nav-more">المزيد</span></a>
+    </footer>
+
+    <script src="js/article.js"></script>
+</body>
+</html> 

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{SITE_NAME}} | موقع رياضي</title>
+    <meta name="description" content="موقع رياضي شامل يقدم آخر الأخبار والتحليلات في عالم كرة القدم">
+    <meta name="keywords" content="كرة القدم, أخبار رياضية, دوري سعودي, دوري أبطال أوروبا, كأس العالم">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{SITE_NAME}} | موقع رياضي">
+    <meta property="og:description" content="موقع رياضي شامل يقدم آخر الأخبار والتحليلات في عالم كرة القدم">
+    <meta property="og:image" content="/assets/images/logo.png">
+    <meta property="og:url" content="/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{SITE_NAME}}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{SITE_NAME}} | موقع رياضي">
+    <meta name="twitter:description" content="موقع رياضي شامل يقدم آخر الأخبار والتحليلات في عالم كرة القدم">
+    <meta name="twitter:image" content="{{SITE_URL}}/assets/images/logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="/">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Dynamic CSS Variables -->
+    <style>
+        :root {
+            --primary-color: {{PRIMARY_COLOR}};
+            --secondary-color: {{SECONDARY_COLOR}};
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .article-title {
+            color: var(--primary-color);
+        }
+        
+        .bottom-nav a.active {
+            color: var(--primary-color);
+        }
+    </style>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{SITE_NAME}}",
+      "description": "{{SITE_DESCRIPTION}}",
+      "url": "/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{SITE_NAME}}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "/assets/images/logo.png"
+        }
+      }
+    }
+    </script>
+    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="language-toggle" id="languageToggle" onclick="toggleLanguage()">
+                <span id="lang-text">EN</span>
+            </div>
+            <div class="logo">
+                <h1 id="site-title">{{SITE_NAME}}</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-bar" id="searchBar">
+                    <input type="text" id="searchInput" placeholder="البحث في المقالات...">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="articles-container">
+            {{ARTICLES_HTML}}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bottom-nav">
+        <a href="/"><i class="fas fa-house"></i><span id="nav-home">الرئيسية</span></a>
+        <a href="/pages/news/index.html"><i class="fas fa-newspaper"></i><span id="nav-news">أخبار</span></a>
+        <a href="/pages/competitions.html"><i class="fas fa-trophy"></i><span id="nav-competitions">بطولات</span></a>
+        <a href="/pages/favorites.html"><i class="fas fa-heart"></i><span id="nav-favorites">المفضلة</span></a>
+        <a href="/pages/more.html"><i class="fas fa-bars"></i><span id="nav-more">المزيد</span></a>
+    </footer>
+
+    <script>
+        // متغيرات عامة
+        let currentLanguage = localStorage.getItem('language') || 'ar';
+        
+        // تبديل اللغة
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('language', currentLanguage);
+            
+            // تحديث اتجاه الصفحة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+            
+            // تحديث النصوص
+            updateLanguageTexts();
+            
+            // إعادة تحميل الصفحة
+            window.location.reload();
+        }
+        
+        // تحديث النصوص حسب اللغة
+        function updateLanguageTexts() {
+            const texts = {
+                ar: {
+                    searchPlaceholder: 'البحث في المقالات...',
+                    home: 'الرئيسية',
+                    news: 'أخبار',
+                    competitions: 'بطولات',
+                    favorites: 'المفضلة',
+                    more: 'المزيد'
+                },
+                en: {
+                    searchPlaceholder: 'Search articles...',
+                    home: 'Home',
+                    news: 'News',
+                    competitions: 'Competitions',
+                    favorites: 'Favorites',
+                    more: 'More'
+                }
+            };
+            
+            // تحديث placeholder البحث
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = texts[currentLanguage].searchPlaceholder;
+            }
+            
+            // تحديث النصوص في الشريط السفلي
+            const navHome = document.getElementById('nav-home');
+            const navNews = document.getElementById('nav-news');
+            const navCompetitions = document.getElementById('nav-competitions');
+            const navFavorites = document.getElementById('nav-favorites');
+            const navMore = document.getElementById('nav-more');
+            
+            if (navHome) navHome.textContent = texts[currentLanguage].home;
+            if (navNews) navNews.textContent = texts[currentLanguage].news;
+            if (navCompetitions) navCompetitions.textContent = texts[currentLanguage].competitions;
+            if (navFavorites) navFavorites.textContent = texts[currentLanguage].favorites;
+            if (navMore) navMore.textContent = texts[currentLanguage].more;
+        }
+        
+        // البحث
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (searchTerm.trim()) {
+                window.location.href = `/?search=${encodeURIComponent(searchTerm)}&lang=${currentLanguage}`;
+            }
+        }
+        
+        // تبديل البحث
+        function toggleSearch() {
+            const searchBar = document.getElementById('searchBar');
+            const searchInput = document.getElementById('searchInput');
+            
+            if (searchBar.classList.contains('active')) {
+                searchBar.classList.remove('active');
+                searchInput.value = '';
+            } else {
+                searchBar.classList.add('active');
+                searchInput.focus();
+            }
+        }
+        
+        // إعداد الأحداث
+        document.addEventListener('DOMContentLoaded', function() {
+            // تطبيق اللغة المحفوظة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+            
+            // تحديث النصوص
+            updateLanguageTexts();
+            
+            // إعداد البحث
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchArticles();
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <script src="js/main.js"></script>
+</body>
+</html> 
