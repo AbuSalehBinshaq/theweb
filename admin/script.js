@@ -7,13 +7,19 @@ let advertisements = [];
 // التحقق من تسجيل الدخول
 async function checkAuth() {
     try {
-        const response = await fetch('/api/admin/articles');
-        if (response.status === 401) {
-            showLoginForm();
-            return false;
+        // استخدام endpoint مفتوح للتحقق من حالة تسجيل الدخول
+        const response = await fetch('/api/auth/status');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.authenticated) {
+                currentUser = data.username;
+                return true;
+            }
         }
-        return true;
+        showLoginForm();
+        return false;
     } catch (error) {
+        console.error('خطأ في التحقق من تسجيل الدخول:', error);
         showLoginForm();
         return false;
     }
@@ -59,7 +65,8 @@ async function login(event) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ username, password }),
+            credentials: 'include' // مهم لحفظ الجلسة
         });
         
         const data = await response.json();
@@ -80,7 +87,10 @@ async function login(event) {
 // تسجيل الخروج
 async function logout() {
     try {
-        await fetch('/api/logout', { method: 'POST' });
+        await fetch('/api/logout', { 
+            method: 'POST',
+            credentials: 'include'
+        });
         currentUser = null;
         showLoginForm();
         showNotification('تم تسجيل الخروج بنجاح', 'success');
@@ -178,7 +188,9 @@ function showTab(tabName, event) {
 // تحميل المقالات
 async function loadArticles() {
     try {
-        const response = await fetch('/api/admin/articles');
+        const response = await fetch('/api/admin/articles', {
+            credentials: 'include'
+        });
         if (!response.ok) {
             throw new Error('فشل في جلب المقالات');
         }
@@ -395,7 +407,8 @@ async function addArticle(event) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(articleData)
+            body: JSON.stringify(articleData),
+            credentials: 'include'
         });
         
         const result = await response.json();
@@ -559,7 +572,8 @@ async function updateArticle(event, articleId) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(articleData)
+            body: JSON.stringify(articleData),
+            credentials: 'include'
         });
         
         const result = await response.json();
@@ -590,7 +604,8 @@ async function deleteArticle(articleId) {
     
     try {
         const response = await fetch(`/api/admin/articles/${articleId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: 'include'
         });
         
         const result = await response.json();
@@ -649,15 +664,20 @@ function showNotification(message, type = 'info') {
 }
 
 // تهيئة الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    checkAuth();
+document.addEventListener('DOMContentLoaded', async function() {
+    const isAuth = await checkAuth();
+    if (isAuth) {
+        loadAdminPanel();
+    }
 }); 
 
 // تحميل الإعدادات
 async function loadSettings() {
     try {
         console.log('جاري تحميل الإعدادات...');
-        const response = await fetch('/api/settings');
+        const response = await fetch('/api/settings', {
+            credentials: 'include'
+        });
         if (response.ok) {
             siteSettings = await response.json();
             console.log('تم تحميل الإعدادات:', siteSettings);
@@ -729,6 +749,20 @@ function displaySettings() {
                 <i class="fas fa-save"></i> حفظ الإعدادات
             </button>
         </form>
+        
+        <div class="section" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <h3><i class="fas fa-tools"></i> أدوات إضافية</h3>
+            <p style="color: #666; margin-bottom: 20px;">أدوات احتياطية لإعادة إنشاء الملفات الثابتة</p>
+            
+            <div class="form-actions">
+                <button type="button" onclick="generateAllArticleHTML()" class="btn btn-secondary">
+                    <i class="fas fa-file-code"></i> إنشاء ملفات المقالات
+                </button>
+                <button type="button" onclick="generateIndexHTML()" class="btn btn-primary">
+                    <i class="fas fa-home"></i> إنشاء الصفحة الرئيسية
+                </button>
+            </div>
+        </div>
     `;
 }
 
@@ -750,7 +784,8 @@ async function saveSettings(event) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(settings)
+            body: JSON.stringify(settings),
+            credentials: 'include'
         });
         
         if (response.ok) {
@@ -771,7 +806,9 @@ async function saveSettings(event) {
 // تحميل الإعلانات
 async function loadAds() {
     try {
-        const response = await fetch('/api/admin/ads');
+        const response = await fetch('/api/admin/ads', {
+            credentials: 'include'
+        });
         if (response.ok) {
             advertisements = await response.json();
             displayAds();
@@ -881,7 +918,8 @@ async function addAd(event) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(adData)
+            body: JSON.stringify(adData),
+            credentials: 'include'
         });
         
         if (response.ok) {
@@ -967,7 +1005,8 @@ async function updateAd(event, adId) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(adData)
+            body: JSON.stringify(adData),
+            credentials: 'include'
         });
         
         if (response.ok) {
@@ -999,7 +1038,8 @@ async function toggleAd(adId, isActive) {
                 position: ad.position,
                 ad_code: ad.ad_code,
                 is_active: isActive
-            })
+            }),
+            credentials: 'include'
         });
         
         if (response.ok) {
@@ -1021,7 +1061,8 @@ async function deleteAd(adId) {
     
     try {
         const response = await fetch(`/api/admin/ads/${adId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: 'include'
         });
         
         if (response.ok) {
@@ -1037,107 +1078,9 @@ async function deleteAd(adId) {
     }
 } 
 
-const fs = require('fs');
-const path = require('path');
 
-// دالة إنشاء ملف HTML للمقال
-async function generateArticleHTML(article) {
-  try {
-    // قراءة قالب المقال
-    const templatePath = path.join(__dirname, 'templates', 'article-template.html');
-    let template = fs.readFileSync(templatePath, 'utf8');
-    
-    // استبدال المتغيرات في القالب
-    const replacements = {
-      '{{TITLE}}': article.title || article.title_en || 'مقال جديد',
-      '{{DESCRIPTION}}': article.description || article.description_en || '',
-      '{{IMAGE}}': article.image_url || article.thumbnail_url || '',
-      '{{URL}}': `${process.env.SITE_URL || 'http://localhost:3000'}/articles/${article.slug}.html`,
-      '{{AUTHOR}}': article.author || 'كسرة - Kasrah',
-      '{{PUBLISH_DATE}}': new Date(article.published_at).toLocaleDateString('ar-SA'),
-      '{{CONTENT}}': article.content || article.content_en || '',
-      '{{SLUG}}': article.slug,
-      '{{CATEGORY}}': article.category || '',
-      '{{META_TITLE}}': article.meta_title || article.title || article.title_en,
-      '{{META_DESCRIPTION}}': article.meta_description || article.description || article.description_en,
-      '{{META_KEYWORDS}}': article.meta_keywords || ''
-    };
-    
-    // تطبيق الاستبدالات
-    Object.keys(replacements).forEach(key => {
-      template = template.replace(new RegExp(key, 'g'), replacements[key]);
-    });
-    
-    // إنشاء مجلد المقالات إذا لم يكن موجوداً
-    const articlesDir = path.join(__dirname, 'articles');
-    if (!fs.existsSync(articlesDir)) {
-      fs.mkdirSync(articlesDir, { recursive: true });
-    }
-    
-    // إنشاء ملف HTML
-    const filePath = path.join(articlesDir, `${article.slug}.html`);
-    fs.writeFileSync(filePath, template, 'utf8');
-    
-    console.log(`✅ تم إنشاء ملف HTML للمقال: ${article.slug}.html`);
-    return filePath;
-  } catch (error) {
-    console.error('❌ خطأ في إنشاء ملف HTML للمقال:', error);
-    throw error;
-  }
-}
 
-// دالة حذف ملف HTML للمقال
-async function deleteArticleHTML(slug) {
-  try {
-    const filePath = path.join(__dirname, 'articles', `${slug}.html`);
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-      console.log(`✅ تم حذف ملف HTML للمقال: ${slug}.html`);
-    }
-  } catch (error) {
-    console.error('❌ خطأ في حذف ملف HTML للمقال:', error);
-  }
-}
-
-// دالة تحديث ملف HTML للمقال
-async function updateArticleHTML(article) {
-  try {
-    // حذف الملف القديم إذا تغير الـ slug
-    if (article.old_slug && article.old_slug !== article.slug) {
-      await deleteArticleHTML(article.old_slug);
-    }
-    
-    // إنشاء الملف الجديد
-    await generateArticleHTML(article);
-  } catch (error) {
-    console.error('❌ خطأ في تحديث ملف HTML للمقال:', error);
-  }
-}
-
-// إضافة أزرار إنشاء الملفات
-function addGenerateHTMLButton() {
-    const actionsContainer = document.querySelector('.actions-container') || document.createElement('div');
-    actionsContainer.className = 'actions-container';
-    
-    const generateArticlesButton = document.createElement('button');
-    generateArticlesButton.className = 'btn btn-secondary';
-    generateArticlesButton.innerHTML = '<i class="fas fa-file-code"></i> إنشاء ملفات المقالات';
-    generateArticlesButton.onclick = generateAllArticleHTML;
-    
-    const generateIndexButton = document.createElement('button');
-    generateIndexButton.className = 'btn btn-primary';
-    generateIndexButton.innerHTML = '<i class="fas fa-home"></i> إنشاء الصفحة الرئيسية';
-    generateIndexButton.onclick = generateIndexHTML;
-    
-    actionsContainer.appendChild(generateArticlesButton);
-    actionsContainer.appendChild(generateIndexButton);
-    
-    // إضافة الزر إلى الصفحة
-    const existingContainer = document.querySelector('.actions-container');
-    if (!existingContainer) {
-        document.querySelector('.content').insertBefore(actionsContainer, document.querySelector('.content').firstChild);
-    }
-}
+// تم نقل الأزرار إلى إعدادات الموقع
 
 // دالة إنشاء جميع ملفات HTML
 async function generateAllArticleHTML() {
@@ -1151,7 +1094,8 @@ async function generateAllArticleHTML() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         });
         
         const result = await response.json();
@@ -1183,7 +1127,8 @@ async function generateIndexHTML() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         });
         
         const result = await response.json();
@@ -1203,8 +1148,4 @@ async function generateIndexHTML() {
     }
 }
 
-// إضافة الزر عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    checkAuth();
-    addGenerateHTMLButton();
-}); 
+// تم نقل هذا الكود إلى الأعلى لتجنب التكرار

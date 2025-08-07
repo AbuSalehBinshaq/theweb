@@ -54,9 +54,14 @@ app.use(express.static('.'));
 // إعداد الجلسات
 app.use(session({
   secret: 'kasrah-secret-key-2025',
-  resave: false,
+  resave: true,
   saveUninitialized: false,
-  cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } // 24 ساعة
+  cookie: { 
+    secure: false, 
+    maxAge: 24 * 60 * 60 * 1000, // 24 ساعة
+    httpOnly: true,
+    sameSite: 'lax'
+  }
 }));
 
 // Middleware للتحقق من تسجيل الدخول
@@ -348,22 +353,174 @@ app.get('/api/articles/:slug', async (req, res) => {
 //sitemap
 async function generateSitemap() {
   try {
+    console.log('🔄 بدء إنشاء ملف sitemap.xml...');
+    
     const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
-    const result = await executeQuery('SELECT slug, updated_at, published_at FROM articles WHERE is_published = true');
+    
+    // جلب جميع المقالات المنشورة
+    const result = await executeQuery('SELECT slug, updated_at, published_at, category FROM articles WHERE is_published = true ORDER BY published_at DESC');
     const articles = result.rows;
-    const urls = articles.map(article => {
+    
+    console.log(`📊 تم العثور على ${articles.length} مقال منشور`);
+    
+    // إنشاء URLs للصفحات الثابتة
+    const staticPages = [
+      {
+        loc: siteUrl,
+        lastmod: new Date().toISOString(),
+        changefreq: 'daily',
+        priority: '1.0'
+      },
+      {
+        loc: `${siteUrl}/pages/news/index.html`,
+        lastmod: new Date().toISOString(),
+        changefreq: 'daily',
+        priority: '0.9'
+      },
+      {
+        loc: `${siteUrl}/pages/competitions.html`,
+        lastmod: new Date().toISOString(),
+        changefreq: 'weekly',
+        priority: '0.8'
+      },
+      {
+        loc: `${siteUrl}/pages/favorites.html`,
+        lastmod: new Date().toISOString(),
+        changefreq: 'weekly',
+        priority: '0.7'
+      },
+      {
+        loc: `${siteUrl}/pages/more.html`,
+        lastmod: new Date().toISOString(),
+        changefreq: 'monthly',
+        priority: '0.6'
+      }
+    ];
+    
+    // إنشاء URLs للمقالات
+    const articleUrls = articles.map(article => {
       const lastmod = article.updated_at || article.published_at || new Date().toISOString();
-      return `    <url>\n      <loc>${siteUrl}/articles/${article.slug}.html</loc>\n      <lastmod>${new Date(lastmod).toISOString()}</lastmod>\n      <changefreq>weekly</changefreq>\n      <priority>0.8</priority>\n    </url>`;
-    }).join('\n');
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+      
+      // تحديد الأولوية بناءً على التصنيف وتاريخ النشر
+      let priority = '0.8';
+      if (article.category === 'أخبار' || article.category === 'كرة القدم') {
+        priority = '0.9';
+      }
+      
+      // تقليل الأولوية للمقالات القديمة
+      const publishDate = new Date(article.published_at);
+      const daysSincePublish = Math.floor((new Date() - publishDate) / (1000 * 60 * 60 * 24));
+      if (daysSincePublish > 30) {
+        priority = '0.7';
+      }
+      if (daysSincePublish > 90) {
+        priority = '0.6';
+      }
+      
+      return {
+        loc: `${siteUrl}/articles/${article.slug}.html`,
+        lastmod: new Date(lastmod).toISOString(),
+        changefreq: daysSincePublish < 7 ? 'daily' : daysSincePublish < 30 ? 'weekly' : 'monthly',
+        priority: priority
+      };
+    });
+    
+    // دمج جميع URLs
+    const allUrls = [...staticPages, ...articleUrls];
+    
+    // إنشاء XML
+    const urlsXml = allUrls.map(url => `    <url>
+      <loc>${url.loc}</loc>
+      <lastmod>${url.lastmod}</lastmod>
+      <changefreq>${url.changefreq}</changefreq>
+      <priority>${url.priority}</priority>
+    </url>`).join('\n');
+    
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urlsXml}
+</urlset>`;
+    
+    // حفظ الملف
     const sitemapPath = path.join(__dirname, 'sitemap.xml');
     fs.writeFileSync(sitemapPath, sitemap, 'utf8');
-    console.log('✅ تم إنشاء ملف sitemap.xml');
+    
+    console.log(`✅ تم إنشاء ملف sitemap.xml بنجاح`);
+    console.log(`📄 المسار: ${sitemapPath}`);
+    console.log(`🔗 إجمالي URLs: ${allUrls.length} (${staticPages.length} صفحات ثابتة + ${articleUrls.length} مقال)`);
+    
     return sitemapPath;
   } catch (error) {
     console.error('❌ خطأ في إنشاء ملف sitemap.xml:', error);
+    throw error;
   }
 }
+
+// API لإنشاء sitemap يدوياً
+app.get('/api/admin/generate-sitemap', requireAuth, async (req, res) => {
+  try {
+    const sitemapPath = await generateSitemap();
+    res.json({ 
+      success: true, 
+      message: 'تم إنشاء ملف sitemap.xml بنجاح',
+      path: sitemapPath 
+    });
+  } catch (error) {
+    console.error('خطأ في إنشاء sitemap:', error);
+    res.status(500).json({ error: 'خطأ في إنشاء ملف sitemap.xml' });
+  }
+});
+
+// API عام لعرض sitemap
+app.get('/sitemap.xml', (req, res) => {
+  try {
+    const sitemapPath = path.join(__dirname, 'sitemap.xml');
+    if (fs.existsSync(sitemapPath)) {
+      res.set('Content-Type', 'application/xml');
+      res.sendFile(sitemapPath);
+    } else {
+      res.status(404).send('ملف sitemap.xml غير موجود');
+    }
+  } catch (error) {
+    console.error('خطأ في عرض sitemap:', error);
+    res.status(500).send('خطأ في الخادم');
+  }
+});
+
+// تشغيل إنشاء sitemap تلقائياً عند بدء الخادم
+async function initializeSitemap() {
+  try {
+    console.log('🚀 تهيئة sitemap.xml عند بدء الخادم...');
+    await generateSitemap();
+  } catch (error) {
+    console.error('❌ فشل في تهيئة sitemap.xml:', error);
+  }
+}
+
+// جدولة إنشاء sitemap كل 24 ساعة
+setInterval(async () => {
+  try {
+    console.log('⏰ تشغيل المهمة المجدولة لتحديث sitemap.xml...');
+    await generateSitemap();
+  } catch (error) {
+    console.error('❌ خطأ في المهمة المجدولة لـ sitemap.xml:', error);
+  }
+}, 24 * 60 * 60 * 1000); // 24 ساعة
+
+// التحقق من حالة تسجيل الدخول
+app.get('/api/auth/status', (req, res) => {
+  if (req.session.isAuthenticated) {
+    res.json({ 
+      authenticated: true, 
+      username: req.session.username 
+    });
+  } else {
+    res.json({ 
+      authenticated: false, 
+      username: null 
+    });
+  }
+});
 
 // تسجيل الدخول للوحة التحكم
 app.post('/api/login', async (req, res) => {
@@ -785,10 +942,26 @@ app.post('/api/admin/generate-index', requireAuth, async (req, res) => {
 });
 
 // تشغيل الخادم
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 الخادم يعمل على المنفذ ${PORT}`);
   console.log(`📱 الموقع متاح على: http://localhost:${PORT}`);
   console.log(`🔧 لوحة التحكم: http://localhost:${PORT}/admin`);
+  
+  // تهيئة sitemap عند بدء الخادم
+  await initializeSitemap();
+  
+  // إعادة إنشاء جميع ملفات المقالات والصفحة الرئيسية عند بدء الخادم
+  try {
+    console.log("🔄 إعادة إنشاء جميع ملفات المقالات والصفحة الرئيسية عند بدء الخادم...");
+    const articlesResult = await executeQuery("SELECT * FROM articles WHERE is_published = true");
+    for (const article of articlesResult.rows) {
+      await generateArticleHTML(article);
+    }
+    await generateIndexHTML();
+    console.log("✅ تم إعادة إنشاء جميع ملفات المقالات والصفحة الرئيسية بنجاح.");
+  } catch (error) {
+    console.error("❌ خطأ في إعادة إنشاء ملفات المقالات والصفحة الرئيسية عند بدء الخادم:", error);
+  }
 });
 
 // إغلاق الاتصال بقاعدة البيانات عند إغلاق التطبيق
