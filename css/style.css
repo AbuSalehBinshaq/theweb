@@ -10,6 +10,20 @@ body {
     background-color: #f5f5f5;
     color: #333;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Color Variables */
+:root {
+    --primary-color: #b71c1c;
+    --primary-light: #f44336;
+    --text-dark: #1a1a1a;
+    --text-medium: #555;
+    --text-light: #888;
+    --border-light: #f0f0f0;
+    --shadow-light: rgba(0,0,0,0.08);
+    --shadow-medium: rgba(0,0,0,0.15);
 }
 
 /* الإعلانات */
@@ -42,7 +56,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* الإعلانات في صفحة المقال */
 .article-ad {
     background: #f8f9fa;
     padding: 20px;
@@ -63,7 +76,9 @@ body {
     letter-spacing: 1px;
 }
 
-/* تحسين عرض المقالات */
+/* ======================================== */
+/* تحسين عرض المقالات (مع صورة أكبر) */
+/* ======================================== */
 .article-card {
     background: white;
     border-radius: 15px;
@@ -73,6 +88,8 @@ body {
     cursor: pointer;
     margin-bottom: 25px;
     border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
 }
 
 .article-card:hover {
@@ -84,8 +101,9 @@ body {
 .article-image {
     position: relative;
     overflow: hidden;
-    height: 220px;
+    height: 260px; /* تم تكبير ارتفاع الصورة هنا */
     background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    flex-shrink: 0;
 }
 
 .article-image img {
@@ -107,15 +125,17 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 50px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.1));
+    height: 80px; /* زيادة ارتفاع الظل ليتناسب مع الصورة الأكبر */
+    background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
     pointer-events: none;
 }
 
 .article-content {
     padding: 25px;
     position: relative;
-}
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .article-title {
@@ -145,6 +165,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
     opacity: 0.9;
+    flex-grow: 1;
 }
 
 .article-meta {
@@ -155,6 +176,7 @@ body {
     color: #888;
     padding-top: 15px;
     border-top: 1px solid #f0f0f0;
+    margin-top: auto;
 }
 
 .article-author {
@@ -182,6 +204,10 @@ body {
     content: '📅';
     font-size: 12px;
 }
+/* ======================================== */
+/* نهاية قسم تحسين عرض المقالات             */
+/* ======================================== */
+
 
 /* تحسين الهيدر */
 .header {
@@ -359,196 +385,135 @@ body {
     margin-bottom: 5px;
 }
 
-/* تحسينات للتصميم المتجاوب */
-@media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        gap: 15px;
-        padding: 0 15px;
-    }
-    
-    .search-container {
-        max-width: 100%;
-        margin: 0;
-    }
-    
-    .main-content {
-        padding: 20px 15px;
-    }
-    
-    .articles-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 15px;
-    }
-    
-    .article-card {
-        margin-bottom: 20px;
-    }
-    
-    .article-image {
-        height: 200px;
-    }
-    
-    .article-content {
-        padding: 20px;
-    }
-    
-    .article-title {
-        font-size: 18px;
-    }
-    
-    .article-description {
-        font-size: 14px;
-    }
-    
-    .content-ad {
-        margin: 15px 0;
-        padding: 15px;
-    }
-    
-    .loading {
-        padding: 40px 20px;
-        font-size: 14px;
-    }
-    
-    .no-articles {
-        padding: 40px 20px;
-        font-size: 16px;
-    }
-    
-    .no-articles::before {
-        font-size: 36px;
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .articles-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .article-card {
-        border-radius: 12px;
-        margin-bottom: 15px;
-    }
-    
-    .article-image {
-        height: 180px;
-    }
-    
-    .article-content {
-        padding: 18px;
-    }
-    
-    .article-title {
-        font-size: 17px;
-        margin-bottom: 10px;
-    }
-    
-    .article-description {
-        font-size: 13px;
-        margin-bottom: 15px;
-    }
-    
-    .article-meta {
-        font-size: 12px;
-        padding-top: 12px;
-    }
-}
-
-/* تحسينات إضافية للتفاعل */
+/* ======================================== */
+/* تحسين عرض المقالات (صورة أكبر - محاولة جديدة) */
+/* ======================================== */
 .article-card {
-    position: relative;
-}
-
-.article-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent, rgba(183, 28, 28, 0.02));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    border-radius: 15px;
-}
-
-.article-card:hover::before {
-    opacity: 1;
-}
-
-/* تحسين الخطوط */
-body {
-    font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* تحسين الألوان */
-:root {
-    --primary-color: #b71c1c;
-    --primary-light: #f44336;
-    --text-dark: #1a1a1a;
-    --text-medium: #555;
-    --text-light: #888;
-    --border-light: #f0f0f0;
-    --shadow-light: rgba(0,0,0,0.08);
-    --shadow-medium: rgba(0,0,0,0.15);
-}
-
-.error-message {
-    text-align: center;
-    color: #dc3545;
-    padding: 40px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.loading {
-    text-align: center;
-    color: #666;
-    padding: 40px;
-    font-style: italic;
-}
-
-/* Article Page Specific Styles */
-.article-page {
-    background: white;
-    margin: 2rem auto;
-    max-width: 800px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 25px;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
 }
 
-.article-header {
-    background: linear-gradient(135deg, #b71c1c 0%, #f44336 100%);
-    color: white;
-    padding: 2rem;
-    text-align: center;
+.article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    border-color: rgba(183, 28, 28, 0.1);
 }
 
-.article-header h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+.article-image {
+    position: relative;
+    overflow: hidden;
+    height: 300px; /* <<< تم تكبير ارتفاع الصورة بشكل ملحوظ هنا */
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    flex-shrink: 0;
 }
 
-.article-body {
-    padding: 2rem;
-    line-height: 1.8;
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    filter: brightness(0.95);
 }
 
-.article-body img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin: 1rem 0;
+.article-card:hover .article-image img {
+    transform: scale(1.08);
+    filter: brightness(1);
 }
+
+.article-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px; /* زيادة ارتفاع الظل ليتناسب مع الصورة الأكبر */
+    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    pointer-events: none;
+}
+
+.article-content {
+    padding: 25px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.article-card:hover .article-title {
+    color: #b71c1c;
+}
+
+.article-description {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    opacity: 0.9;
+    flex-grow: 1;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #888;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+}
+
+.article-author {
+    font-weight: 600;
+    color: #b71c1c;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.article-author::before {
+    content: '✍️';
+    font-size: 12px;
+}
+
+.article-date {
+    font-style: italic;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.article-date::before {
+    content: '📅';
+    font-size: 12px;
+}
+
 
 .share-buttons {
     display: flex;
@@ -661,8 +626,78 @@ body {
     font-style: italic;
 }
 
+.error-message {
+    text-align: center;
+    color: #dc3545;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* تحسينات للتصميم المتجاوب */
 @media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    .search-container {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .main-content {
+        padding: 20px 15px;
+    }
+    
+    .articles-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 15px;
+    }
+    
+    .article-card {
+        margin-bottom: 20px;
+    }
+    
+    .article-image {
+        height: 220px; /* تعديل ارتفاع الصورة للشاشات المتوسطة */
+    }
+    
+    .article-content {
+        padding: 20px;
+    }
+    
+    .article-title {
+        font-size: 18px;
+    }
+    
+    .article-description {
+        font-size: 14px;
+    }
+    
+    .content-ad {
+        margin: 15px 0;
+        padding: 15px;
+    }
+    
+    .loading {
+        padding: 40px 20px;
+        font-size: 14px;
+    }
+    
+    .no-articles {
+        padding: 40px 20px;
+        font-size: 16px;
+    }
+    
+    .no-articles::before {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
     .related-articles-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -671,4 +706,39 @@ body {
     .related-article-card {
         margin-bottom: 1rem;
     }
-} 
+}
+
+@media (max-width: 480px) {
+    .articles-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .article-card {
+        border-radius: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .article-image {
+        height: 200px; /* تعديل ارتفاع الصورة للشاشات الصغيرة */
+    }
+    
+    .article-content {
+        padding: 18px;
+    }
+    
+    .article-title {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    
+    .article-description {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    .article-meta {
+        font-size: 12px;
+        padding-top: 12px;
+    }
+}
