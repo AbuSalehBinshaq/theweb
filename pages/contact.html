@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - كسرة - Kasrah</title>
+    <meta name="description" content="تواصل مع فريق كسرة - نحن هنا للإجابة على استفساراتك">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #8a1e1e, #b80000);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .contact-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .contact-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8a1e1e;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #8a1e1e, #b80000);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #8a1e1e;
+            margin-left: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .contact-item-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .contact-item-content p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .social-links {
+            margin-top: 30px;
+        }
+        
+        .social-links h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.3rem;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #666;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+        
+        .social-link:hover {
+            background: #8a1e1e;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .social-link i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .social-link span {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-form,
+            .contact-info {
+                padding: 25px;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="language-toggle" id="languageToggle" onclick="toggleLanguage()">
+                <span id="lang-text">EN</span>
+            </div>
+            <div class="logo">
+                <h1 id="site-title">كسرة - Kasrah</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-bar" id="searchBar">
+                    <input type="text" id="searchInput" placeholder="البحث في المقالات...">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>اتصل بنا</h1>
+                <p>نحن هنا للإجابة على استفساراتك وملاحظاتك</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h2>أرسل رسالة</h2>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+                    </div>
+                    
+                    <div class="error-message" id="errorMessage">
+                        <i class="fas fa-exclamation-circle"></i>
+                        حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى.
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">الموضوع *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">اختر الموضوع</option>
+                                <option value="استفسار عام">استفسار عام</option>
+                                <option value="اقتراح">اقتراح</option>
+                                <option value="شكوى">شكوى</option>
+                                <option value="تعاون">تعاون</option>
+                                <option value="أخرى">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">الرسالة *</label>
+                            <textarea id="message" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2>معلومات التواصل</h2>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-item-content">
+                            <h3>البريد الإلكتروني</h3>
+                            <p>info@kasrah.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-content">
+                            <h3>الهاتف</h3>
+                            <p>+966 50 000 0000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-content">
+                            <h3>العنوان</h3>
+                            <p>الرياض، المملكة العربية السعودية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-item-content">
+                            <h3>ساعات العمل</h3>
+                            <p>الأحد - الخميس: 9:00 ص - 6:00 م</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h3>تابعنا على</h3>
+                        <div class="social-grid">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                                <span>تويتر</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                                <span>فيسبوك</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>إنستغرام</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                                <span>يوتيوب</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-telegram"></i>
+                                <span>تليجرام</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>واتساب</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bottom-nav">
+        <a href="/"><i class="fas fa-house"></i><span id="nav-home">الرئيسية</span></a>
+        <a href="/pages/news"><i class="fas fa-newspaper"></i><span id="nav-news">أخبار</span></a>
+        <a href="/pages/competitions"><i class="fas fa-trophy"></i><span id="nav-competitions">بطولات</span></a>
+        <a href="/pages/favorites"><i class="fas fa-heart"></i><span id="nav-favorites">المفضلة</span></a>
+        <a href="/pages/more"><i class="fas fa-bars"></i><span id="nav-more">المزيد</span></a>
+    </footer>
+
+    <script>
+        // متغيرات عامة
+        let currentLanguage = localStorage.getItem('language') || 'ar';
+        
+        // تبديل اللغة
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('language', currentLanguage);
+            
+            // تحديث اتجاه الصفحة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+            
+            // إعادة تحميل الصفحة
+            window.location.reload();
+        }
+        
+        // معالجة نموذج الاتصال
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // محاكاة إرسال الرسالة
+            console.log('بيانات النموذج:', data);
+            
+            // إظهار رسالة النجاح
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // إعادة تعيين النموذج
+            this.reset();
+            
+            // إخفاء رسالة النجاح بعد 5 ثوان
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+        
+        // إعداد الأحداث
+        document.addEventListener('DOMContentLoaded', function() {
+            // تطبيق اللغة المحفوظة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+        });
+    </script>
+</body>
+</html>

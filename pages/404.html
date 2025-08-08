@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - الصفحة غير موجودة | كسرة - Kasrah</title>
+    <meta name="description" content="عذراً، الصفحة التي تبحث عنها غير موجودة. عد إلى الصفحة الرئيسية أو استخدم البحث.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="404 - الصفحة غير موجودة | كسرة - Kasrah">
+    <meta property="og:description" content="عذراً، الصفحة التي تبحث عنها غير موجودة.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/404">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="404 - الصفحة غير موجودة | كسرة - Kasrah">
+    <meta name="twitter:description" content="عذراً، الصفحة التي تبحث عنها غير موجودة.">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --primary-color: #8a1e1e;
+            --secondary-color: #b80000;
+            --accent-color: #d32f2f;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555;
+            --text-light: #888;
+            --bg-light: #f8f9fa;
+            --border-light: #e9ecef;
+            --shadow-light: rgba(0,0,0,0.08);
+            --shadow-medium: rgba(0,0,0,0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        body {
+            font-family: 'Cairo', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px var(--shadow-medium);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .language-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .error-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .error-icon {
+            font-size: 6rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px var(--shadow-light);
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .search-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .search-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px var(--shadow-light);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            outline: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+        }
+
+        .useful-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow-light);
+            color: var(--primary-color);
+        }
+
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .link-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .error-container {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 2rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .useful-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* English styles */
+        [lang="en"] {
+            direction: ltr;
+            text-align: left;
+        }
+
+        [lang="en"] .search-box {
+            flex-direction: row;
+        }
+
+        [lang="en"] .action-buttons {
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">كسرة - Kasrah</a>
+            <button class="language-toggle" onclick="toggleLanguage()">English</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="error-container">
+            <div class="error-icon">😕</div>
+            <h1 class="error-title" data-ar="عذراً!" data-en="Sorry!">عذراً!</h1>
+            <div class="error-code">404</div>
+            <p class="error-message" data-ar="الصفحة التي تبحث عنها غير موجودة. ربما تم نقلها أو حذفها، أو ربما كتبت الرابط بشكل خاطئ." data-en="The page you're looking for doesn't exist. It might have been moved or deleted, or you might have typed the wrong URL.">
+                الصفحة التي تبحث عنها غير موجودة. ربما تم نقلها أو حذفها، أو ربما كتبت الرابط بشكل خاطئ.
+            </p>
+
+            <div class="action-buttons">
+                <a href="/" class="btn btn-primary" data-ar="العودة للصفحة الرئيسية" data-en="Back to Home">العودة للصفحة الرئيسية</a>
+                <button class="btn btn-secondary" onclick="history.back()" data-ar="العودة للصفحة السابقة" data-en="Go Back">العودة للصفحة السابقة</button>
+            </div>
+
+            <div class="search-section">
+                <h3 class="search-title" data-ar="البحث في الموقع" data-en="Search the site">البحث في الموقع</h3>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="ابحث عن مقالات وأخبار..." data-ar-placeholder="ابحث عن مقالات وأخبار..." data-en-placeholder="Search for articles and news...">
+                    <button class="search-btn" onclick="performSearch()" data-ar="بحث" data-en="Search">بحث</button>
+                </div>
+            </div>
+
+            <div class="useful-links">
+                <a href="/pages/news" class="link-card">
+                    <div class="link-title" data-ar="الأخبار" data-en="News">الأخبار</div>
+                    <div class="link-desc" data-ar="آخر الأخبار الرياضية" data-en="Latest sports news">آخر الأخبار الرياضية</div>
+                </a>
+                <a href="/pages/competitions" class="link-card">
+                    <div class="link-title" data-ar="البطولات" data-en="Competitions">البطولات</div>
+                    <div class="link-desc" data-ar="متابعة البطولات المختلفة" data-en="Follow different competitions">متابعة البطولات المختلفة</div>
+                </a>
+                <a href="/pages/about" class="link-card">
+                    <div class="link-title" data-ar="من نحن" data-en="About Us">من نحن</div>
+                    <div class="link-desc" data-ar="تعرف على فريق العمل" data-en="Meet our team">تعرف على فريق العمل</div>
+                </a>
+                <a href="/pages/contact" class="link-card">
+                    <div class="link-title" data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</div>
+                    <div class="link-desc" data-ar="تواصل معنا" data-en="Get in touch">تواصل معنا</div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p data-ar="جميع الحقوق محفوظة © 2024 كسرة - Kasrah" data-en="All rights reserved © 2024 Kasrah">جميع الحقوق محفوظة © 2024 كسرة - Kasrah</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language toggle functionality
+        let currentLanguage = 'ar';
+        
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLanguage;
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update button text
+            const toggleBtn = document.querySelector('.language-toggle');
+            toggleBtn.textContent = currentLanguage === 'ar' ? 'English' : 'العربية';
+            
+            // Update all translatable elements
+            updateTexts();
+        }
+        
+        function updateTexts() {
+            const elements = document.querySelectorAll('[data-ar][data-en]');
+            elements.forEach(element => {
+                const text = currentLanguage === 'ar' ? element.getAttribute('data-ar') : element.getAttribute('data-en');
+                element.textContent = text;
+            });
+            
+            // Update placeholders
+            const inputs = document.querySelectorAll('[data-ar-placeholder][data-en-placeholder]');
+            inputs.forEach(input => {
+                const placeholder = currentLanguage === 'ar' ? input.getAttribute('data-ar-placeholder') : input.getAttribute('data-en-placeholder');
+                input.placeholder = placeholder;
+            });
+        }
+        
+        // Search functionality
+        function performSearch() {
+            const searchInput = document.querySelector('.search-input');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                // Redirect to search results or implement search functionality
+                window.location.href = `/search?q=${encodeURIComponent(query)}`;
+            }
+        }
+        
+        // Enter key for search
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Initialize
+        updateTexts();
+    </script>
+</body>
+</html>

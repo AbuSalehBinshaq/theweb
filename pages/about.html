@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - كسرة - Kasrah</title>
+    <meta name="description" content="تعرف على فريق كسرة وأهدافنا في تقديم أفضل المحتوى الرياضي">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #8a1e1e, #b80000);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .about-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .about-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .about-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .about-section {
+            margin-bottom: 40px;
+        }
+        
+        .about-section h2 {
+            color: #8a1e1e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #8a1e1e;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .team-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .contact-info h3 {
+            color: #8a1e1e;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            margin-left: 15px;
+            color: #8a1e1e;
+            width: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .about-header h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                padding: 25px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="language-toggle" id="languageToggle" onclick="toggleLanguage()">
+                <span id="lang-text">EN</span>
+            </div>
+            <div class="logo">
+                <h1 id="site-title">كسرة - Kasrah</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-bar" id="searchBar">
+                    <input type="text" id="searchInput" placeholder="البحث في المقالات...">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="about-container">
+            <div class="about-header">
+                <h1>من نحن</h1>
+                <p>فريق كسرة - نقدم أفضل المحتوى الرياضي</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-section">
+                    <h2>قصتنا</h2>
+                    <p>كسرة هو موقع رياضي متخصص يهدف إلى تقديم محتوى رياضي عالي الجودة باللغتين العربية والإنجليزية. تأسس الموقع بهدف توفير مصدر موثوق ومحدث للأخبار الرياضية، خاصة في مجال كرة القدم والدوري السعودي.</p>
+                    
+                    <p>نؤمن بأهمية تقديم محتوى دقيق ومحايد، مع التركيز على التحليلات العميقة والتغطية الشاملة للأحداث الرياضية المهمة.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h2>رؤيتنا</h2>
+                    <p>نسعى لأن نكون المصدر الأول للأخبار الرياضية في المنطقة، مع التركيز على:</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-newspaper"></i>
+                            <h3>أخبار محدثة</h3>
+                            <p>نقدم آخر الأخبار والتطورات في عالم الرياضة بشكل مستمر</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>تحليلات عميقة</h3>
+                            <p>تحليلات مفصلة ومعلومات إحصائية دقيقة</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-globe"></i>
+                            <h3>تغطية شاملة</h3>
+                            <p>تغطية جميع البطولات والمنافسات المهمة</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h3>مجتمع تفاعلي</h3>
+                            <p>نشجع التفاعل والحوار البناء بين الجماهير</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h2>قيمنا</h2>
+                    <p><strong>الموثوقية:</strong> نحرص على التحقق من صحة المعلومات قبل نشرها</p>
+                    <p><strong>الحيادية:</strong> نقدم المحتوى بشكل محايد وموضوعي</p>
+                    <p><strong>الاحترافية:</strong> نلتزم بأعلى معايير الصحافة المهنية</p>
+                    <p><strong>الابتكار:</strong> نسعى دائماً لتطوير وتحسين خدماتنا</p>
+                </div>
+            </div>
+            
+            <div class="team-section">
+                <h2>فريق العمل</h2>
+                <p>يتكون فريق كسرة من مجموعة من المحررين والكتّاب المتخصصين في المجال الرياضي، كل منهم يمتلك خبرة واسعة في مجال تخصصه.</p>
+                
+                <div class="contact-info">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@kasrah.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+966 50 000 0000</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>الرياض، المملكة العربية السعودية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bottom-nav">
+        <a href="/"><i class="fas fa-house"></i><span id="nav-home">الرئيسية</span></a>
+        <a href="/pages/news"><i class="fas fa-newspaper"></i><span id="nav-news">أخبار</span></a>
+        <a href="/pages/competitions"><i class="fas fa-trophy"></i><span id="nav-competitions">بطولات</span></a>
+        <a href="/pages/favorites"><i class="fas fa-heart"></i><span id="nav-favorites">المفضلة</span></a>
+        <a href="/pages/more"><i class="fas fa-bars"></i><span id="nav-more">المزيد</span></a>
+    </footer>
+
+    <script>
+        // متغيرات عامة
+        let currentLanguage = localStorage.getItem('language') || 'ar';
+        
+        // تبديل اللغة
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('language', currentLanguage);
+            
+            // تحديث اتجاه الصفحة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+            
+            // إعادة تحميل الصفحة
+            window.location.reload();
+        }
+        
+        // إعداد الأحداث
+        document.addEventListener('DOMContentLoaded', function() {
+            // تطبيق اللغة المحفوظة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+        });
+    </script>
+</body>
+</html>

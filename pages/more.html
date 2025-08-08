@@ -3,523 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المزيد - كسرة - KASRAH</title>
-    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
+    <title>المزيد - كسرة - Kasrah</title>
+    <meta name="description" content="صفحة المزيد - جميع الروابط والخدمات المتاحة في موقع كسرة">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .more-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .more-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #8a1e1e, #b80000);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .more-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .more-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .menu-sections {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .menu-section {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .section-header h2 {
+            color: #8a1e1e;
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .menu-items {
+            padding: 0;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item:hover {
+            background: #f8f9fa;
+            color: #8a1e1e;
+        }
+        
+        .menu-item i {
+            font-size: 1.3rem;
+            margin-left: 15px;
+            width: 25px;
+            text-align: center;
+            color: #8a1e1e;
+        }
+        
+        .menu-item-content {
+            flex: 1;
+        }
+        
+        .menu-item-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .menu-item-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .menu-item-arrow {
+            color: #ccc;
+            font-size: 1rem;
+        }
+        
+        .menu-item:hover .menu-item-arrow {
+            color: #8a1e1e;
+        }
+        
+        .app-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .app-info h3 {
+            color: #8a1e1e;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .app-version {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #666;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            min-width: 80px;
+        }
+        
+        .social-link:hover {
+            background: #8a1e1e;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .social-link i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .social-link span {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .more-header h1 {
+                font-size: 2rem;
+            }
+            
+            .menu-item {
+                padding: 15px;
+            }
+            
+            .menu-item-title {
+                font-size: 1rem;
+            }
+            
+            .social-grid {
+                gap: 10px;
+            }
+            
+            .social-link {
+                min-width: 70px;
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-container">
-            <div class="language-switch">
-                <button class="lang-btn" onclick="toggleLanguage()">
-                    <i class="fas fa-globe"></i>
-                    <span id="lang-text">EN</span>
-                </button>
+        <div class="header-content">
+            <div class="language-toggle" id="languageToggle" onclick="toggleLanguage()">
+                <span id="lang-text">EN</span>
             </div>
-            
             <div class="logo">
-                <h1><a href="../index.html" style="color: white; text-decoration: none;">كسرة - KASRAH</a></h1>
+                <h1 id="site-title">كسرة - Kasrah</h1>
             </div>
-            
-            <div class="search-icon">
-                <button class="search-btn" onclick="toggleSearch()">
-                    <i class="fas fa-search"></i>
-                </button>
+            <div class="search-container">
+                <div class="search-bar" id="searchBar">
+                    <input type="text" id="searchInput" placeholder="البحث في المقالات...">
+                    <button class="search-btn" onclick="toggleSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <!-- Search Bar -->
-        <div class="search-bar" id="searchBar">
-            <input type="text" placeholder="ابحث..." id="searchInput">
-            <button onclick="searchArticles()">
-                <i class="fas fa-search"></i>
-            </button>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container">
-            <h1 style="text-align: center; color: #1e3c72; margin-bottom: 2rem;" data-translate="more">المزيد</h1>
+        <div class="more-container">
+            <div class="more-header">
+                <h1>المزيد</h1>
+                <p>جميع الخدمات والروابط المتاحة</p>
+            </div>
             
-            <div class="more-sections">
-                <!-- لوحة التحكم -->
-                <div class="section-card">
-                    <div class="section-icon">
-                        <i class="fas fa-cog"></i>
+            <div class="menu-sections">
+                <!-- الموقع والخدمات -->
+                <div class="menu-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-globe"></i> الموقع والخدمات</h2>
                     </div>
-                    <h3 data-translate="dashboard">لوحة التحكم</h3>
-                    <p data-translate="dashboardDescription">إدارة المقالات والمحتوى</p>
-                    <a href="../admin/index.html" class="section-link">
-                        <i class="fas fa-arrow-left"></i> <span data-translate="loginToDashboard">الدخول للوحة التحكم</span>
-                    </a>
+                    <div class="menu-items">
+                        <a href="/pages/about" class="menu-item">
+                            <i class="fas fa-info-circle"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">من نحن</div>
+                                <div class="menu-item-description">تعرف على فريق كسرة وأهدافنا</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/contact" class="menu-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">اتصل بنا</div>
+                                <div class="menu-item-description">تواصل معنا للإجابة على استفساراتك</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/privacy-policy" class="menu-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">سياسة الخصوصية</div>
+                                <div class="menu-item-description">كيف نحمي معلوماتك الشخصية</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/terms-of-service" class="menu-item">
+                            <i class="fas fa-file-contract"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">شروط الخدمة</div>
+                                <div class="menu-item-description">الشروط والأحكام الخاصة باستخدام الموقع</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <!-- حول الموقع -->
-                <div class="section-card">
-                    <div class="section-icon">
-                        <i class="fas fa-info-circle"></i>
+                <!-- المحتوى والتصفح -->
+                <div class="menu-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-newspaper"></i> المحتوى والتصفح</h2>
                     </div>
-                    <h3 data-translate="about">حول الموقع</h3>
-                    <p data-translate="aboutDescription">معلومات عن كسرة - KASRAH</p>
-                    <button class="section-link" onclick="showAbout()">
-                        <i class="fas fa-arrow-left"></i> <span data-translate="viewInfo">عرض المعلومات</span>
-                    </button>
+                    <div class="menu-items">
+                        <a href="/pages/news" class="menu-item">
+                            <i class="fas fa-newspaper"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">أخبار</div>
+                                <div class="menu-item-description">آخر الأخبار والتطورات الرياضية</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/competitions" class="menu-item">
+                            <i class="fas fa-trophy"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">بطولات</div>
+                                <div class="menu-item-description">معلومات عن البطولات والمنافسات</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/favorites" class="menu-item">
+                            <i class="fas fa-heart"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">المفضلة</div>
+                                <div class="menu-item-description">المقالات التي حفظتها</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/search" class="menu-item">
+                            <i class="fas fa-search"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">البحث المتقدم</div>
+                                <div class="menu-item-description">ابحث في جميع المقالات والمحتوى</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <!-- الإعدادات -->
-                <div class="section-card">
-                    <div class="section-icon">
-                        <i class="fas fa-sliders-h"></i>
+                <!-- الإعدادات والتفضيلات -->
+                <div class="menu-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-cog"></i> الإعدادات والتفضيلات</h2>
                     </div>
-                    <h3 data-translate="settings">الإعدادات</h3>
-                    <p data-translate="settingsDescription">تخصيص تجربة التصفح</p>
-                    <button class="section-link" onclick="showSettings()">
-                        <i class="fas fa-arrow-left"></i> <span data-translate="openSettings">فتح الإعدادات</span>
-                    </button>
+                    <div class="menu-items">
+                        <a href="#" class="menu-item" onclick="toggleLanguage()">
+                            <i class="fas fa-language"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">تغيير اللغة</div>
+                                <div class="menu-item-description">تبديل بين العربية والإنجليزية</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/notifications" class="menu-item">
+                            <i class="fas fa-bell"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">الإشعارات</div>
+                                <div class="menu-item-description">إعدادات الإشعارات والتنبيهات</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/settings" class="menu-item">
+                            <i class="fas fa-sliders-h"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">إعدادات الموقع</div>
+                                <div class="menu-item-description">تخصيص تجربتك في الموقع</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                    </div>
                 </div>
                 
-                <!-- التواصل -->
-                <div class="section-card">
-                    <div class="section-icon">
-                        <i class="fas fa-envelope"></i>
+                <!-- الدعم والمساعدة -->
+                <div class="menu-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-question-circle"></i> الدعم والمساعدة</h2>
                     </div>
-                    <h3 data-translate="contact">تواصل معنا</h3>
-                    <p data-translate="contactDescription">راسلنا عبر البريد الإلكتروني</p>
-                    <a href="mailto:contact@kasrah.com" class="section-link">
-                        <i class="fas fa-arrow-left"></i> <span data-translate="sendMessage">إرسال رسالة</span>
-                    </a>
+                    <div class="menu-items">
+                        <a href="/pages/help" class="menu-item">
+                            <i class="fas fa-question"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">مركز المساعدة</div>
+                                <div class="menu-item-description">دليل شامل لاستخدام الموقع</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/faq" class="menu-item">
+                            <i class="fas fa-comments"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">الأسئلة الشائعة</div>
+                                <div class="menu-item-description">إجابات على الأسئلة المتكررة</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                        
+                        <a href="/pages/feedback" class="menu-item">
+                            <i class="fas fa-comment-dots"></i>
+                            <div class="menu-item-content">
+                                <div class="menu-item-title">إرسال ملاحظة</div>
+                                <div class="menu-item-description">شاركنا آراءك واقتراحاتك</div>
+                            </div>
+                            <i class="fas fa-chevron-left menu-item-arrow"></i>
+                        </a>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- معلومات التطبيق -->
+            <div class="app-info">
+                <h3>كسرة - Kasrah</h3>
+                <p class="app-version">الإصدار 2.0.0</p>
                 
-                <!-- التطبيق -->
-                <div class="section-card">
-                    <div class="section-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                <div class="social-links">
+                    <h4>تابعنا على</h4>
+                    <div class="social-grid">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            <span>تويتر</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                            <span>فيسبوك</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                            <span>إنستغرام</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                            <span>يوتيوب</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-telegram"></i>
+                            <span>تليجرام</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>واتساب</span>
+                        </a>
                     </div>
-                    <h3 data-translate="mobileApp">تطبيق الجوال</h3>
-                    <p data-translate="mobileAppDescription">حمل تطبيق كسرة للهاتف</p>
-                    <button class="section-link" onclick="showAppInfo()">
-                        <i class="fas fa-arrow-left"></i> <span data-translate="appInfo">معلومات التطبيق</span>
-                    </button>
-                </div>
-                
-                <!-- المساعدة -->
-                <div class="section-card">
-                    <div class="section-icon">
-                        <i class="fas fa-question-circle"></i>
-                    </div>
-                    <h3 data-translate="help">المساعدة</h3>
-                    <p data-translate="helpDescription">دليل الاستخدام والأسئلة الشائعة</p>
-                    <button class="section-link" onclick="showHelp()">
-                        <i class="fas fa-arrow-left"></i> <span data-translate="viewHelp">عرض المساعدة</span>
-                    </button>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer Navigation -->
+    <!-- Footer -->
     <footer class="bottom-nav">
-        <a href="../index.html">
-            <i class="fas fa-house"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="/pages/news/index.html">
-            <i class="fas fa-newspaper"></i>
-            <span>أخبار</span>
-        </a>
-        <a href="/pages/competitions.html">
-            <i class="fas fa-trophy"></i>
-            <span>بطولات</span>
-        </a>
-        <a href="/pages/favorites.html">
-            <i class="fas fa-heart"></i>
-            <span>المفضلة</span>
-        </a>
-        <a href="/pages/more.html" class="active">
-            <i class="fas fa-bars"></i>
-            <span>المزيد</span>
-        </a>
+        <a href="/"><i class="fas fa-house"></i><span id="nav-home">الرئيسية</span></a>
+        <a href="/pages/news"><i class="fas fa-newspaper"></i><span id="nav-news">أخبار</span></a>
+        <a href="/pages/competitions"><i class="fas fa-trophy"></i><span id="nav-competitions">بطولات</span></a>
+        <a href="/pages/favorites"><i class="fas fa-heart"></i><span id="nav-favorites">المفضلة</span></a>
+        <a href="/pages/more" class="active"><i class="fas fa-bars"></i><span id="nav-more">المزيد</span></a>
     </footer>
 
-    <!-- Modal for About -->
-    <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 data-translate="aboutKasrah">حول كسرة - KASRAH</h2>
-                <span class="close" onclick="closeModal('aboutModal')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p><strong data-translate="kasrahDescription">كسرة - KASRAH</strong> <span data-translate="kasrahFullDescription">هو موقع رياضي عربي متخصص في تغطية الأخبار الرياضية المحلية والعالمية.</span></p>
-                <p data-translate="weOffer">نقدم لكم:</p>
-                <ul>
-                    <li data-translate="latestFootballNews">أحدث أخبار كرة القدم</li>
-                    <li data-translate="saudiLeagueCoverage">تغطية شاملة للدوري السعودي</li>
-                    <li data-translate="europeanChampionships">أخبار البطولات الأوروبية</li>
-                    <li data-translate="worldTeamsNews">أخبار المنتخبات العالمية</li>
-                    <li data-translate="specializedAnalysis">تحليلات رياضية متخصصة</li>
-                </ul>
-                <p><strong data-translate="version">الإصدار:</strong> 1.0.0</p>
-                <p><strong data-translate="releaseDate">تاريخ الإطلاق:</strong> 2025</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for Settings -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 data-translate="settings">الإعدادات</h2>
-                <span class="close" onclick="closeModal('settingsModal')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="setting-item">
-                    <label data-translate="defaultLanguage">اللغة الافتراضية:</label>
-                    <select id="defaultLanguage">
-                        <option value="ar" data-translate="arabic">العربية</option>
-                        <option value="en" data-translate="english">English</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label data-translate="articlesPerPage">عدد المقالات في الصفحة:</label>
-                    <select id="articlesPerPage">
-                        <option value="5" data-translate="fiveArticles">5 مقالات</option>
-                        <option value="10" selected data-translate="tenArticles">10 مقالات</option>
-                        <option value="15" data-translate="fifteenArticles">15 مقالة</option>
-                        <option value="20" data-translate="twentyArticles">20 مقالة</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label>
-                        <input type="checkbox" id="notifications"> <span data-translate="enableNotifications">تفعيل الإشعارات</span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <label>
-                        <input type="checkbox" id="darkMode"> <span data-translate="darkMode">الوضع المظلم</span>
-                    </label>
-                </div>
-                <button class="btn btn-primary" onclick="saveSettings()" data-translate="saveSettings">حفظ الإعدادات</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for App Info -->
-    <div id="appModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 data-translate="mobileAppTitle">تطبيق كسرة للجوال</h2>
-                <span class="close" onclick="closeModal('appModal')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <p data-translate="mobileAppAvailable">تطبيق كسرة للهاتف المحمول متوفر قريباً على:</p>
-                <div class="app-stores">
-                    <div class="store-item">
-                        <i class="fab fa-google-play"></i>
-                        <span data-translate="googlePlay">Google Play</span>
-                    </div>
-                    <div class="store-item">
-                        <i class="fab fa-apple"></i>
-                        <span data-translate="appStore">App Store</span>
-                    </div>
-                </div>
-                <p data-translate="appFeatures">مميزات التطبيق:</p>
-                <ul>
-                    <li data-translate="instantNotifications">إشعارات فورية للأخبار المهمة</li>
-                    <li data-translate="fastBrowsing">تصفح سريع وسهل</li>
-                    <li data-translate="saveArticles">حفظ المقالات للقراءة لاحقاً</li>
-                    <li data-translate="easySharing">مشاركة سهلة على وسائل التواصل</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for Help -->
-    <div id="helpModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 data-translate="helpAndFAQ">المساعدة والأسئلة الشائعة</h2>
-                <span class="close" onclick="closeModal('helpModal')">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="faq-item">
-                    <h4 data-translate="howToSearch">كيف أبحث عن مقال معين؟</h4>
-                    <p data-translate="searchAnswer">اضغط على أيقونة البحث في الأعلى واكتب الكلمات المفتاحية.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 data-translate="howToAddFavorite">كيف أضيف مقال للمفضلة؟</h4>
-                    <p data-translate="favoriteAnswer">اضغط على أيقونة القلب في صفحة المقال.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 data-translate="howToShare">كيف أشارك مقال؟</h4>
-                    <p data-translate="shareAnswer">استخدم أزرار المشاركة في نهاية كل مقال.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 data-translate="howToChangeLanguage">كيف أغير اللغة؟</h4>
-                    <p data-translate="languageAnswer">اضغط على زر تغيير اللغة في الأعلى.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .more-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .section-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .section-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .section-icon {
-            font-size: 3rem;
-            color: #1e3c72;
-            margin-bottom: 1rem;
-        }
-        
-        .section-card h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-        }
-        
-        .section-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: #1e3c72;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .section-link:hover {
-            background: #2a5298;
-            transform: translateY(-2px);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .modal-header h2 {
-            color: #1e3c72;
-        }
-        
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close:hover {
-            color: #000;
-        }
-        
-        .modal-body {
-            padding: 1.5rem;
-        }
-        
-        .setting-item {
-            margin-bottom: 1rem;
-        }
-        
-        .setting-item label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .setting-item select,
-        .setting-item input[type="checkbox"] {
-            margin-top: 0.5rem;
-        }
-        
-        .app-stores {
-            display: flex;
-            justify-content: space-around;
-            margin: 1rem 0;
-        }
-        
-        .store-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem;
-            border: 1px solid #eee;
-            border-radius: 10px;
-        }
-        
-        .store-item i {
-            font-size: 2rem;
-            color: #1e3c72;
-        }
-        
-        .faq-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        
-        .faq-item h4 {
-            color: #1e3c72;
-            margin-bottom: 0.5rem;
-        }
-    </style>
-
     <script>
-        // Show modals
-        function showAbout() {
-            document.getElementById('aboutModal').style.display = 'block';
-        }
+        // متغيرات عامة
+        let currentLanguage = localStorage.getItem('language') || 'ar';
         
-        function showSettings() {
-            document.getElementById('settingsModal').style.display = 'block';
-            loadUserSettings();
-        }
-        
-        function showAppInfo() {
-            document.getElementById('appModal').style.display = 'block';
-        }
-        
-        function showHelp() {
-            document.getElementById('helpModal').style.display = 'block';
-        }
-        
-        // Close modals
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        }
-        
-        // Load user settings
-        function loadUserSettings() {
-            const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
-            
-            if (settings.defaultLanguage) {
-                document.getElementById('defaultLanguage').value = settings.defaultLanguage;
-            }
-            if (settings.articlesPerPage) {
-                document.getElementById('articlesPerPage').value = settings.articlesPerPage;
-            }
-            if (settings.notifications !== undefined) {
-                document.getElementById('notifications').checked = settings.notifications;
-            }
-            if (settings.darkMode !== undefined) {
-                document.getElementById('darkMode').checked = settings.darkMode;
-            }
-        }
-        
-        // Save settings
-        function saveSettings() {
-            const settings = {
-                defaultLanguage: document.getElementById('defaultLanguage').value,
-                articlesPerPage: document.getElementById('articlesPerPage').value,
-                notifications: document.getElementById('notifications').checked,
-                darkMode: document.getElementById('darkMode').checked
-            };
-            
-            localStorage.setItem('userSettings', JSON.stringify(settings));
-            
-            // Show success message
-            alert('تم حفظ الإعدادات بنجاح');
-            closeModal('settingsModal');
-        }
-        
-        // Toggle search bar
-        function toggleSearch() {
-            const searchBar = document.getElementById('searchBar');
-            searchBar.classList.toggle('active');
-            
-            if (searchBar.classList.contains('active')) {
-                document.getElementById('searchInput').focus();
-            }
-        }
-        
-        // Toggle language
+        // تبديل اللغة
         function toggleLanguage() {
-            const langText = document.getElementById('lang-text');
-            const currentLang = langText.textContent;
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('language', currentLanguage);
             
-            if (currentLang === 'EN') {
-                langText.textContent = 'AR';
-                document.documentElement.dir = 'ltr';
-                document.documentElement.lang = 'en';
-            } else {
-                langText.textContent = 'EN';
-                document.documentElement.dir = 'rtl';
-                document.documentElement.lang = 'ar';
-            }
+            // تحديث اتجاه الصفحة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+            
+            // إعادة تحميل الصفحة
+            window.location.reload();
         }
         
-        // Search functionality (placeholder)
-        function searchArticles() {
-            // This would be implemented based on the current page context
-            console.log('Search functionality');
-        }
+        // إعداد الأحداث
+        document.addEventListener('DOMContentLoaded', function() {
+            // تطبيق اللغة المحفوظة
+            document.body.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('lang', currentLanguage);
+        });
     </script>
 </body>
 </html> 
