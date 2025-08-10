@@ -2,13 +2,13 @@
 
 <script>
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js").then(reg => {
+    navigator.serviceWorker.register("../sw.js").then(reg => {
         document.getElementById("enableNotifications").addEventListener("click", () => {
             Notification.requestPermission().then(permission => {
                 if (permission === "granted") {
                     reg.showNotification("📢 تجربة إشعار", {
                         body: "تم تفعيل الإشعارات بنجاح",
-                        icon: "/android-chrome-192x192.png"
+                        icon: "../android-chrome-192x192.png"
                     });
                 }
             });
@@ -16,3 +16,4 @@ if ("serviceWorker" in navigator) {
     });
 }
 </script>
+
