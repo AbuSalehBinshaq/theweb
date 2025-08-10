@@ -484,5 +484,22 @@
     <a href="{{SITE_NAME}}/app-install-guide.html" target="_blank" class="downloadBtn" id="downloadAppBtn">تحميل التطبيق</a>
   </div>
 </div>
+<script>
+  (function() {
+    const overlay = document.getElementById('appDownloadOverlay');
+    const closeBtn = document.getElementById('closeAppPopup');
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  })();
+</script>
+
 </body>
 </html> 
