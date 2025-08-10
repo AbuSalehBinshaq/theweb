@@ -112,7 +112,7 @@ async function generateArticleHTML(article) {
       '{{TITLE}}': article.title || article.title_en || 'مقال جديد',
       '{{DESCRIPTION}}': article.description || article.description_en || '',
       '{{IMAGE}}': article.image_url || article.thumbnail_url || '',
-      '{{URL}}': `${process.env.SITE_URL || 'http://localhost:3000'}/articles/${article.slug}.html`,
+      '{{URL}}': `${process.env.SITE_URL || 'http://localhost:3000'}/articles/${article.slug}`,
       '{{SITE_URL}}': process.env.SITE_URL || 'http://localhost:3000',
       '{{AUTHOR}}': article.author || 'كسرة - Kasrah',
       '{{PUBLISH_DATE}}': publishDate,
@@ -149,9 +149,7 @@ async function generateArticleHTML(article) {
     // إنشاء ملف HTML
     const filePath = path.join(articlesDir, `${article.slug}.html`);
     fs.writeFileSync(filePath, template, 'utf8');
-    
-    console.log(`✅ تم إنشاء ملف HTML للمقال: ${article.slug}.html`);
-    console.log(`📄 مسار الملف: ${filePath}`);
+  
     
     return filePath;
   } catch (error) {
