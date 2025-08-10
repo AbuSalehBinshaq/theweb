@@ -348,7 +348,7 @@
             }
             
             container.innerHTML = articles.map(article => `
-                <div class="related-article-card" onclick="window.location.href='/articles/${article.slug}.html'">
+                <div class="related-article-card" onclick="window.location.href='/articles/${article.slug}'">
                     <div class="related-article-image">
                         <img src="${article.thumbnail_url || article.image_url || 'https://via.placeholder.com/200x150/1e3a8a/ffffff?text=كسرة'}" 
                              alt="${article.title}" loading="lazy">
