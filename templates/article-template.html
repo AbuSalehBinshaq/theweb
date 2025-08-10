@@ -21,30 +21,34 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{META_TITLE}} - {{SITE_NAME}}</title>
-    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
-    <meta name="description" content="{{META_DESCRIPTION}}">
-    <meta name="keywords" content="{{META_KEYWORDS}}">
-    <meta name="author" content="{{AUTHOR}}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{META_TITLE}} - {{SITE_NAME}}</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{SITE_URL}}/favicon.ico">
+
+<meta name="description" content="{{META_DESCRIPTION}}">
+<meta name="keywords" content="{{META_KEYWORDS}}">
+<meta name="author" content="{{AUTHOR}}">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{META_TITLE}}">
-    <meta property="og:description" content="{{META_DESCRIPTION}}">
-    <meta property="og:image" content="/assets/images/logo.png">
-    <meta property="og:url" content="/">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="{{SITE_NAME}}">
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="{{META_TITLE}}">
+<meta property="og:description" content="{{META_DESCRIPTION}}">
+<meta property="og:image" content="{{IMAGE}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="{{SITE_NAME}}">
     
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{META_TITLE}}">
-    <meta name="twitter:description" content="{{META_DESCRIPTION}}">
-    <meta name="twitter:image" content="{{IMAGE}}">
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{META_TITLE}}">
+<meta name="twitter:description" content="{{META_DESCRIPTION}}">
+<meta name="twitter:image" content="{{IMAGE}}">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="/">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{URL}}">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../css/style.css">
@@ -124,34 +128,58 @@
         }
     </style>
     
-    <!-- Structured Data -->
-    <script type="application/ld+json">
+<!-- Structured Data: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{META_TITLE}}",
+  "description": "{{META_DESCRIPTION}}",
+  "image": "{{IMAGE}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{AUTHOR}}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{SITE_NAME}}"
+  },
+  "datePublished": "{{PUBLISH_DATE_ISO}}",
+  "dateModified": "{{MODIFIED_DATE_ISO}}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{URL}}"
+  }
+}
+</script>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "{{META_TITLE}}",
-      "description": "{{META_DESCRIPTION}}",
-      "image": "{{IMAGE}}",
-      "author": {
-        "@type": "Person",
-        "name": "{{AUTHOR}}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{SITE_NAME}}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "/assets/images/logo.png"
-        }
-      },
-      "datePublished": "{{PUBLISH_DATE_ISO}}",
-      "dateModified": "{{MODIFIED_DATE_ISO}}",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{URL}}"
-      }
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": "{{SITE_URL}}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "أخبار",
+      "item": "{{SITE_URL}}/news/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{META_TITLE}}",
+      "item": "{{URL}}"
     }
-    </script>
+  ]
+}
+</script>
 </head>
 <body>
     <!-- Header -->
