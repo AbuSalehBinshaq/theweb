@@ -255,24 +255,25 @@
     
     <script src="js/main.js"></script>
     
+<button id="enableNotifications">🔔 فعل الإشعارات</button>
+
 <script>
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js").then(reg => {
-        console.log("Service Worker Registered ✅");
-
-        // طلب إذن الإشعارات
-        Notification.requestPermission().then(permission => {
-            if (permission === "granted") {
-                // عرض إشعار تجريبي
-                reg.showNotification("📢 تجربة إشعار", {
-                    body: "هذا إشعار تجريبي من موقعك الرياضي",
-                    icon: "/android-chrome-192x192.png"
-                });
-            }
+        document.getElementById("enableNotifications").addEventListener("click", () => {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    reg.showNotification("📢 تجربة إشعار", {
+                        body: "تم تفعيل الإشعارات بنجاح",
+                        icon: "/android-chrome-192x192.png"
+                    });
+                }
+            });
         });
     });
 }
 </script>
+
 
 </body>
 </html> 
