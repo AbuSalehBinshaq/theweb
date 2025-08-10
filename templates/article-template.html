@@ -484,22 +484,47 @@
     <a href="https://kasrah.onrender.com/app-install-guide.html" target="_blank" class="downloadBtn" id="downloadAppBtn">تحميل التطبيق</a>
   </div>
 </div>
+
 <script>
   (function() {
     const overlay = document.getElementById('appDownloadOverlay');
     const closeBtn = document.getElementById('closeAppPopup');
+    const downloadBtn = document.getElementById('downloadAppBtn');
 
+    // إغلاق البوب أب عند الضغط على ×
     closeBtn.addEventListener('click', () => {
       overlay.style.display = 'none';
     });
 
+    // إغلاق البوب أب عند الضغط خارج الصندوق
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.style.display = 'none';
       }
     });
+
+    // تتبع ضغط زر التحميل في Google Analytics 4
+    downloadBtn.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'download_app', {
+          'event_category': 'engagement',
+          'event_label': 'تحميل تطبيق كسرة'
+        });
+      }
+    });
   })();
+
+  // تتبع تثبيت التطبيق
+  window.addEventListener('appinstalled', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'app_installed', {
+        'event_category': 'engagement',
+        'event_label': 'تثبيت تطبيق كسرة'
+      });
+    }
+  });
 </script>
+
 
 </body>
 </html> 
