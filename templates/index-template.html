@@ -21,72 +21,88 @@
 
   gtag('config', 'G-1P6N61Y9Z3');
 </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{SITE_NAME}} | موقع رياضي</title>
-    <meta name="description" content="موقع رياضي شامل يقدم آخر الأخبار والتحليلات في عالم كرة القدم">
-    <meta name="keywords" content="كرة القدم, أخبار رياضية, دوري سعودي, دوري أبطال أوروبا, كأس العالم">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{SITE_NAME}} | موقع رياضي">
-    <meta property="og:description" content="موقع رياضي شامل يقدم آخر الأخبار والتحليلات في عالم كرة القدم">
-    <meta property="og:image" content="/assets/images/logo.png">
-    <meta property="og:url" content="/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{SITE_NAME}}">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{SITE_NAME}} | موقع رياضي">
-    <meta name="twitter:description" content="موقع رياضي شامل يقدم آخر الأخبار والتحليلات في عالم كرة القدم">
-    <meta name="twitter:image" content="{{SITE_URL}}/assets/images/logo.png">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="/">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Dynamic CSS Variables -->
-    <style>
-        :root {
-            --primary-color: {{PRIMARY_COLOR}};
-            --secondary-color: {{SECONDARY_COLOR}};
-        }
-        
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
-        
-        .article-title {
-            color: var(--primary-color);
-        }
-        
-        .bottom-nav a.active {
-            color: var(--primary-color);
-        }
-    </style>
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "{{SITE_NAME}}",
-      "description": "{{SITE_DESCRIPTION}}",
-      "url": "/",
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{SITE_NAME}}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "/assets/images/logo.png"
-        }
-      }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{SITE_NAME}} | موقع رياضي</title>
+<meta name="description" content="{{SITE_DESCRIPTION}}">
+<meta name="keywords" content="كسرة سبورت kasrah sport – موقع رياضي يهتم بكل جديد في الدوري السعودي ، من الأخبار إلى الانتقالات . تغطية سريعة لعشاق كرة القدم">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="{{SITE_NAME}} | موقع رياضي">
+<meta property="og:description" content="{{SITE_DESCRIPTION}}">
+<meta property="og:image" content="{{SITE_URL}}/assets/images/logo.png">
+<meta property="og:url" content="{{SITE_URL}}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{SITE_NAME}}">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{SITE_NAME}} | موقع رياضي">
+<meta name="twitter:description" content="{{SITE_DESCRIPTION}}">
+<meta name="twitter:image" content="{{SITE_URL}}/assets/images/logo.png">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{SITE_URL}}/">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="{{SITE_URL}}/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Dynamic CSS Variables -->
+<style>
+    :root {
+        --primary-color: {{PRIMARY_COLOR}};
+        --secondary-color: {{SECONDARY_COLOR}};
     }
-    </script>
-    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
+    
+    .header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+    
+    .article-title {
+        color: var(--primary-color);
+    }
+    
+    .bottom-nav a.active {
+        color: var(--primary-color);
+    }
+</style>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{SITE_URL}}/favicon.ico">
+
+<!-- Structured Data (WebSite) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{SITE_NAME}}",
+  "description": "{{SITE_DESCRIPTION}}",
+  "url": "{{SITE_URL}}/"
+}
+</script>
+
+<!-- Structured Data (BreadcrumbList) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": "{{SITE_URL}}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "أخبار",
+      "item": "{{SITE_URL}}/news/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
     <!-- Header -->
