@@ -487,3 +487,77 @@ textarea {
     width: auto;
     margin-right: 8px;
 } 
+
+/* ======== نافذة UTM ومشاركة ======== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.modal {
+    background: #fff;
+    width: min(800px, 95vw);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h4 { color: #333; }
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.modal-body {
+    padding: 16px 20px 22px;
+}
+
+.utm-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.quick-presets, .share-quick {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.utm-preview {
+    margin-top: 16px;
+}
+
+.preview-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+}
+
+.preview-row input {
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+    .utm-grid { grid-template-columns: 1fr; }
+}
