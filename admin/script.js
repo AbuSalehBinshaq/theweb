@@ -228,6 +228,9 @@ function displayArticles() {
                 <button onclick="viewArticle('${article.slug}')" class="btn btn-info">
                     <i class="fas fa-eye"></i> عرض
                 </button>
+                <button onclick="openShareModal('${article.slug}', ${article.id})" class="btn btn-success">
+                    <i class="fas fa-share-alt"></i> مشاركة
+                </button>
                 <button onclick="deleteArticle(${article.id})" class="btn btn-danger">
                     <i class="fas fa-trash"></i> حذف
                 </button>
@@ -1149,3 +1152,167 @@ async function generateIndexHTML() {
 }
 
 // تم نقل هذا الكود إلى الأعلى لتجنب التكرار
+
+// ======== مشاركة المقال مع UTM (لوحة التحكم) ========
+
+function openShareModal(slug, articleId) {
+    const baseUrl = `${window.location.origin}/articles/${slug}.html`;
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+        <div class="modal">
+            <div class="modal-header">
+                <h4><i class="fas fa-share-alt"></i> مشاركة المقال مع UTM</h4>
+                <button class="modal-close" aria-label="إغلاق" onclick="closeShareModal(this)"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="utm-grid">
+                    <div class="form-group">
+                        <label for="utm_source">utm_source</label>
+                        <input type="text" id="utm_source" placeholder="facebook, twitter, instagram, google" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="utm_medium">utm_medium</label>
+                        <input type="text" id="utm_medium" placeholder="social, cpc, email" value="social">
+                    </div>
+                    <div class="form-group">
+                        <label for="utm_campaign">utm_campaign</label>
+                        <input type="text" id="utm_campaign" placeholder="اسم الحملة" value="${slug}">
+                    </div>
+                    <div class="form-group">
+                        <label for="utm_term">utm_term (اختياري)</label>
+                        <input type="text" id="utm_term" placeholder="كلمة مفتاحية أو جمهور">
+                    </div>
+                    <div class="form-group">
+                        <label for="utm_content">utm_content (اختياري)</label>
+                        <input type="text" id="utm_content" placeholder="نسخة الإعلان / المبدع / حجم البانر">
+                    </div>
+                </div>
+
+                <div class="quick-presets">
+                    <span>قوالب سريعة:</span>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('facebook')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('instagram')"><i class="fab fa-instagram"></i> Instagram</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('tiktok')"><i class="fab fa-tiktok"></i> TikTok</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('telegram')"><i class="fab fa-telegram"></i> Telegram</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('meta_ads')"><i class="fas fa-bullhorn"></i> Meta Ads</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('google_ads')"><i class="fab fa-google"></i> Google Ads</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setUtmPreset('email')"><i class="fas fa-envelope"></i> Email</button>
+                </div>
+
+                <div class="utm-preview">
+                    <label>الرابط النهائي:</label>
+                    <div class="preview-row">
+                        <input type="text" id="utm_final_url" readonly value="${baseUrl}">
+                        <button class="btn btn-primary" onclick="copyUtmLink()"><i class="fas fa-copy"></i> نسخ</button>
+                    </div>
+                </div>
+
+                <div class="share-quick">
+                    <span>مشاركة مباشرة:</span>
+                    <button class="btn btn-sm btn-info" onclick="shareWithPlatform('facebook')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    <button class="btn btn-sm btn-info" onclick="shareWithPlatform('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
+                    <button class="btn btn-sm btn-info" onclick="shareWithPlatform('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                    <button class="btn btn-sm btn-info" onclick="shareWithPlatform('telegram')"><i class="fab fa-telegram"></i> Telegram</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // ربط التحديث التلقائي للمعاينة
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(id => {
+        modal.querySelector(`#${id}`).addEventListener('input', () => updateUtmPreview(baseUrl));
+    });
+
+    // إغلاق عند الضغط خارج الصندوق
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+
+    // تحديث أولي
+    updateUtmPreview(baseUrl);
+}
+
+function closeShareModal(button) {
+    const overlay = button.closest('.modal-overlay');
+    if (overlay) document.body.removeChild(overlay);
+}
+
+function buildUtmUrl(baseUrl, params) {
+    const url = new URL(baseUrl);
+    Object.entries(params).forEach(([key, value]) => {
+        if (value && String(value).trim() !== '') {
+            url.searchParams.set(key, value);
+        }
+    });
+    return url.toString();
+}
+
+function updateUtmPreview(baseUrl) {
+    const source = document.getElementById('utm_source')?.value || '';
+    const medium = document.getElementById('utm_medium')?.value || '';
+    const campaign = document.getElementById('utm_campaign')?.value || '';
+    const term = document.getElementById('utm_term')?.value || '';
+    const content = document.getElementById('utm_content')?.value || '';
+    const finalUrlInput = document.getElementById('utm_final_url');
+    const finalUrl = buildUtmUrl(baseUrl, {
+        utm_source: source,
+        utm_medium: medium,
+        utm_campaign: campaign,
+        utm_term: term,
+        utm_content: content
+    });
+    if (finalUrlInput) finalUrlInput.value = finalUrl;
+}
+
+function copyUtmLink() {
+    const input = document.getElementById('utm_final_url');
+    if (!input) return;
+    navigator.clipboard.writeText(input.value)
+        .then(() => showNotification('تم نسخ الرابط بنجاح', 'success'))
+        .catch(() => showNotification('تعذر نسخ الرابط', 'error'));
+}
+
+function setUtmPreset(preset) {
+    const map = {
+        facebook: { utm_source: 'facebook', utm_medium: 'social' },
+        twitter: { utm_source: 'twitter', utm_medium: 'social' },
+        instagram: { utm_source: 'instagram', utm_medium: 'social' },
+        tiktok: { utm_source: 'tiktok', utm_medium: 'social' },
+        whatsapp: { utm_source: 'whatsapp', utm_medium: 'social' },
+        telegram: { utm_source: 'telegram', utm_medium: 'social' },
+        meta_ads: { utm_source: 'meta', utm_medium: 'cpc' },
+        google_ads: { utm_source: 'google', utm_medium: 'cpc' },
+        email: { utm_source: 'newsletter', utm_medium: 'email' }
+    };
+    const values = map[preset] || {};
+    const sourceInput = document.getElementById('utm_source');
+    const mediumInput = document.getElementById('utm_medium');
+    const campaignInput = document.getElementById('utm_campaign');
+    if (sourceInput && values.utm_source) sourceInput.value = values.utm_source;
+    if (mediumInput && values.utm_medium) mediumInput.value = values.utm_medium;
+    if (campaignInput && !campaignInput.value) campaignInput.value = 'campaign-' + new Date().toISOString().slice(0,10);
+    const baseUrl = document.getElementById('utm_final_url')?.value.split('?')[0] || '';
+    if (baseUrl) updateUtmPreview(baseUrl);
+}
+
+function shareWithPlatform(platform) {
+    const url = document.getElementById('utm_final_url')?.value;
+    if (!url) return;
+    const title = document.title || 'Kasrah';
+    const shareUrls = {
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+        whatsapp: `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`,
+        telegram: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`
+    };
+    const shareUrl = shareUrls[platform];
+    if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=500');
+}
