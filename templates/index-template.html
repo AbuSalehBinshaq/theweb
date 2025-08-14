@@ -2,6 +2,15 @@
 <html lang="ar" dir="rtl">
 <head>
 
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "fbf5ae45-068b-46cf-a68b-ff55b76975ad",
+    });
+  });
+</script>
 
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#ffffff">
