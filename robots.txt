@@ -8,7 +8,6 @@ Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /.env
 Disallow: /*.json$
-Disallow: /*.xml$
 Disallow: /*.txt$
 
 # السماح بالكاش والملفات المهمة (CSS, JS, صور)
