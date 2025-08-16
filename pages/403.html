@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الوصول ممنوع - 403 | كسرة</title>
+    <meta name="description" content="ليس لديك صلاحية للوصول لهذه الصفحة">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="الوصول ممنوع - 403 | كسرة">
+    <meta property="og:description" content="ليس لديك صلاحية للوصول لهذه الصفحة">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #8a1e1e;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .error-title {
+            font-size: 32px;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .error-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8a1e1e, #b80000);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .lock-icon {
+            font-size: 80px;
+            color: #8a1e1e;
+            margin: 20px 0;
+            animation: lockShake 2s ease-in-out infinite;
+        }
+        
+        @keyframes lockShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 80px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">403</h1>
+        <div class="lock-icon">
+            <i class="fas fa-lock"></i>
+        </div>
+        <h2 class="error-title">الوصول ممنوع</h2>
+        <p class="error-message">
+            عذراً، ليس لديك صلاحية للوصول لهذه الصفحة.
+            إذا كنت تعتقد أن هذا خطأ، يرجى التواصل مع إدارة الموقع.
+        </p>
+        
+        <div class="error-actions">
+            <a href="../" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                العودة للرئيسية
+            </a>
+            <a href="../pages/contact.html" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i>
+                تواصل معنا
+            </a>
+            <button onclick="goBack()" class="btn btn-secondary">
+                <i class="fas fa-arrow-right"></i>
+                العودة للصفحة السابقة
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // العودة للصفحة السابقة
+        function goBack() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = '../';
+            }
+        }
+        
+        // إضافة تأثيرات بصرية
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorCode = document.querySelector('.error-code');
+            const lockIcon = document.querySelector('.lock-icon');
+            
+            errorCode.style.opacity = '0';
+            errorCode.style.transform = 'scale(0.5)';
+            lockIcon.style.opacity = '0';
+            lockIcon.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                errorCode.style.transition = 'all 0.8s ease';
+                errorCode.style.opacity = '1';
+                errorCode.style.transform = 'scale(1)';
+            }, 100);
+            
+            setTimeout(() => {
+                lockIcon.style.transition = 'all 0.8s ease';
+                lockIcon.style.opacity = '1';
+                lockIcon.style.transform = 'scale(1)';
+            }, 300);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة غير موجودة - 404 | كسرة</title>
+    <meta name="description" content="الصفحة التي تبحث عنها غير موجودة. العودة للصفحة الرئيسية">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="الصفحة غير موجودة - 404 | كسرة">
+    <meta property="og:description" content="الصفحة التي تبحث عنها غير موجودة. العودة للصفحة الرئيسية">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #8a1e1e;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .error-title {
+            font-size: 32px;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .error-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8a1e1e, #b80000);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .search-box {
+            margin: 30px 0;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: #8a1e1e;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 80px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">الصفحة غير موجودة</h2>
+        <p class="error-message">
+            عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها إلى مكان آخر.
+            يمكنك البحث عن المحتوى الذي تريده أو العودة للصفحة الرئيسية.
+        </p>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="ابحث في الموقع..." id="searchInput">
+        </div>
+        
+        <div class="error-actions">
+            <a href="../" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                العودة للرئيسية
+            </a>
+            <a href="../pages/news/" class="btn btn-secondary">
+                <i class="fas fa-newspaper"></i>
+                آخر الأخبار
+            </a>
+            <button onclick="goBack()" class="btn btn-secondary">
+                <i class="fas fa-arrow-right"></i>
+                العودة للصفحة السابقة
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // البحث
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    window.location.href = `../pages/search.html?q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+        
+        // العودة للصفحة السابقة
+        function goBack() {
+            if (document.referrer) {
+                window.history.back();
+            } else {
+                window.location.href = '../';
+            }
+        }
+        
+        // إضافة تأثيرات بصرية
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorCode = document.querySelector('.error-code');
+            errorCode.style.opacity = '0';
+            errorCode.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                errorCode.style.transition = 'all 0.8s ease';
+                errorCode.style.opacity = '1';
+                errorCode.style.transform = 'scale(1)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
