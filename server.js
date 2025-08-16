@@ -49,25 +49,6 @@ initializeDatabase();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Middleware لحماية الملفات الحساسة
-app.use((req, res, next) => {
-  const sensitiveFiles = [
-    'config.env', '.env', '.git', 'package.json', 'package-lock.json',
-    'node_modules', 'server.js', 'setup-database.js'
-  ];
-  
-  const requestedPath = req.path.toLowerCase();
-  
-  for (const file of sensitiveFiles) {
-    if (requestedPath.includes(file.toLowerCase())) {
-      return res.status(403).send('Access Forbidden');
-    }
-  }
-  
-  next();
-});
-
 app.use(express.static('.'));
 
 // إعداد الجلسات
@@ -82,27 +63,6 @@ app.use(session({
     sameSite: 'lax'
   }
 }));
-
-// Middleware للتعامل مع الأخطاء
-app.use((err, req, res, next) => {
-  console.error('خطأ في الخادم:', err);
-  
-  if (err.status === 404) {
-    return res.status(404).sendFile(path.join(__dirname, 'pages', '404.html'));
-  }
-  
-  if (err.status === 403) {
-    return res.status(403).sendFile(path.join(__dirname, 'pages', '403.html'));
-  }
-  
-  // خطأ عام في الخادم
-  res.status(500).sendFile(path.join(__dirname, 'pages', '500.html'));
-});
-
-// معالجة الصفحات غير الموجودة (404)
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'pages', '404.html'));
-});
 
 // Middleware للتحقق من تسجيل الدخول
 function requireAuth(req, res, next) {
