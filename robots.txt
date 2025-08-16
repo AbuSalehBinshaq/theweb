@@ -2,28 +2,9 @@ User-agent: *
 Disallow: /admin/
 Disallow: /api/admin/
 Disallow: /config.env
-Disallow: /package.json
-Disallow: /package-lock.json
-Disallow: /node_modules/
-Disallow: /.git/
 Disallow: /.env
-Disallow: /*.json$
-Disallow: /*.txt$
+Disallow: /.git/
+Disallow: /node_modules/
 
-# السماح بالكاش والملفات المهمة (CSS, JS, صور)
-Allow: /css/
-Allow: /js/
-Allow: /assets/
-Allow: /pages/
-Allow: /articles/
 
-# السماح للصور بأنواعها
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
-Allow: /*.gif$
-Allow: /*.webp$
-Allow: /*.ico$
-
-# Sitemap
 Sitemap: https://kasrah.onrender.com/sitemap.xml
