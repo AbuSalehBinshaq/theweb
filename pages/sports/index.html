@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرياضة - كسرة</title>
+    <meta name="description" content="تابع آخر أخبار الرياضة والمباريات والنتائج مع كسرة">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/sports.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../../index.html">
+                        <h1>كسرة</h1>
+                        <span>Kasrah</span>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <ul>
+                        <li><a href="../../index.html">الرئيسية</a></li>
+                        <li><a href="../news/index.html">الأخبار</a></li>
+                        <li><a href="index.html" class="active">الرياضة</a></li>
+                        <li><a href="../more.html">المزيد</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="search-btn" aria-label="البحث">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="menu-toggle" aria-label="القائمة">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Sports Header -->
+            <section class="sports-header">
+                <h1>الرياضة</h1>
+                <p>تابع آخر أخبار الرياضة والمباريات والنتائج</p>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="loading-indicator">
+                <div class="spinner"></div>
+                <p>جاري تحميل البيانات الرياضية...</p>
+            </div>
+
+            <!-- Sports Stats -->
+            <section id="sports-stats" class="sports-stats hidden">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="today-matches-count">0</h3>
+                            <p>مباريات اليوم</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card live">
+                        <div class="stat-icon">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="live-matches-count">0</h3>
+                            <p>مباريات مباشرة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="tomorrow-matches-count">0</h3>
+                            <p>مباريات الغد</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-matches-count">0</h3>
+                            <p>إجمالي المباريات</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Live Matches -->
+            <section id="live-matches-section" class="matches-section hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-broadcast-tower"></i> المباريات المباشرة</h2>
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        <span>مباشر</span>
+                    </div>
+                </div>
+                <div id="live-matches" class="matches-grid">
+                    <!-- Live matches will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Today's Matches -->
+            <section id="today-matches-section" class="matches-section hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-futbol"></i> مباريات اليوم</h2>
+                    <span class="date" id="today-date"></span>
+                </div>
+                <div id="today-matches" class="matches-grid">
+                    <!-- Today's matches will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Tomorrow's Matches -->
+            <section id="tomorrow-matches-section" class="matches-section hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-alt"></i> مباريات الغد</h2>
+                    <span class="date" id="tomorrow-date"></span>
+                </div>
+                <div id="tomorrow-matches" class="matches-grid">
+                    <!-- Tomorrow's matches will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Sports News -->
+            <section id="sports-news-section" class="news-section hidden">
+                <div class="section-header">
+                    <h2><i class="fas fa-newspaper"></i> الأخبار الرياضية</h2>
+                    <a href="#" class="view-all">عرض الكل</a>
+                </div>
+                <div id="sports-news" class="news-grid">
+                    <!-- Sports news will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Team Search -->
+            <section class="team-search-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-search"></i> البحث عن فريق</h2>
+                </div>
+                <div class="search-form">
+                    <input type="text" id="team-search-input" placeholder="ابحث عن فريق..." maxlength="50">
+                    <button id="team-search-btn" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div id="team-search-results" class="team-results hidden">
+                    <!-- Team search results will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>كسرة</h3>
+                    <p>موقعك الأول للأخبار والمحتوى الرياضي</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="../../index.html">الرئيسية</a></li>
+                        <li><a href="../news/index.html">الأخبار</a></li>
+                        <li><a href="index.html">الرياضة</a></li>
+                        <li><a href="../more.html">المزيد</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 كسرة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/sports.js"></script>
+</body>
+</html>
+
