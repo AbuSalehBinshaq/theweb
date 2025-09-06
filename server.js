@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 
+// استيراد مسارات البيانات الرياضية
+const addSportsRoutes = require('./sports_routes');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -63,6 +66,9 @@ app.use(session({
     sameSite: 'lax'
   }
 }));
+
+// إضافة مسارات البيانات الرياضية
+addSportsRoutes(app);
 
 // Middleware للتحقق من تسجيل الدخول
 function requireAuth(req, res, next) {
