@@ -395,6 +395,20 @@
     </script>
     
     <script src="../js/main.js"></script>
+<p class="download-label">قم بتحميل كسرة</p>
+<div id="floatingAppButton" class="floating-app-btn">
+    <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="شعار تطبيق كسره">
+</div>
+
+<div id="appDownloadOverlay">
+    <div id="appDownloadPopup">
+        <span class="closeBtn" id="closeAppPopup">&times;</span>
+        <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="تطبيق كسره" />
+        <p>حمل تطبيق كسره الآن وتمتع بأحدث الأخبار الرياضية والتنبيهات أولاً بأول بسهولة وسرعة!</p>
+        <a href="https://kasrah.onrender.com/app-install-guide.html" target="_blank" class="downloadBtn" id="downloadAppBtn">تحميل التطبيق</a>
+    </div>
+</div>
+
 <style>
 /* CSS for the pop-up (same as before) */
 #appDownloadOverlay {
@@ -480,7 +494,7 @@
     }
 }
 
-/* New CSS for the floating button */
+/* New CSS for the floating button and label */
 .floating-app-btn {
     position: fixed;
     bottom: 20px;
@@ -506,39 +520,46 @@
     object-fit: contain;
     border-radius: 50%;
 }
+
+.download-label {
+    position: fixed;
+    bottom: 85px; /* Adjust the distance from the button */
+    right: 5px; /* Adjust the horizontal position */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#floatingAppButton:hover + .download-label {
+    transform: translateX(0);
+    opacity: 1;
+}
 </style>
-
-<div id="floatingAppButton" class="floating-app-btn">
-    <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="شعار تطبيق كسره">
-</div>
-
-<div id="appDownloadOverlay">
-    <div id="appDownloadPopup">
-        <span class="closeBtn" id="closeAppPopup">&times;</span>
-        <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="تطبيق كسره" />
-        <p>حمل تطبيق كسره الآن وتمتع بأحدث الأخبار الرياضية والتنبيهات أولاً بأول بسهولة وسرعة!</p>
-        <a href="https://kasrah.onrender.com/app-install-guide.html" target="_blank" class="downloadBtn" id="downloadAppBtn">تحميل التطبيق</a>
-    </div>
-</div>
 
 <script>
 (function() {
     const overlay = document.getElementById('appDownloadOverlay');
     const closeBtn = document.getElementById('closeAppPopup');
     const downloadBtn = document.getElementById('downloadAppBtn');
-    const floatingBtn = document.getElementById('floatingAppButton'); // New: Floating button element
+    const floatingBtn = document.getElementById('floatingAppButton');
 
-    // Show the pop-up when the floating button is clicked
     floatingBtn.addEventListener('click', () => {
         overlay.style.display = 'flex';
     });
 
-    // Close pop-up when '×' is clicked
     closeBtn.addEventListener('click', () => {
         overlay.style.display = 'none';
     });
 
-    // Close pop-up when clicking outside the box
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
             overlay.style.display = 'none';
