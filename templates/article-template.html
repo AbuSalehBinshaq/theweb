@@ -395,6 +395,8 @@
     </script>
     
     <script src="../js/main.js"></script>
+
+
 <p class="download-label">قم بتحميل كسرة</p>
 <div id="floatingAppButton" class="floating-app-btn">
     <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="شعار تطبيق كسره">
@@ -494,16 +496,16 @@
     }
 }
 
-/* New CSS for the floating button and label */
+/* New CSS for the floating button and permanent label */
 .floating-app-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
     cursor: pointer;
-    width: 60px; /* Adjust size as needed */
-    height: 60px; /* Adjust size as needed */
-    border-radius: 50%; /* Makes it a circle */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
@@ -523,8 +525,8 @@
 
 .download-label {
     position: fixed;
-    bottom: 85px; /* Adjust the distance from the button */
-    right: 5px; /* Adjust the horizontal position */
+    bottom: 85px;
+    right: 5px;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 5px 10px;
     border-radius: 8px;
@@ -534,14 +536,10 @@
     z-index: 1000;
     white-space: nowrap;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transform: translateX(100%);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#floatingAppButton:hover + .download-label {
-    transform: translateX(0);
+    /* No hover effect, it's always visible */
     opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 </style>
 
