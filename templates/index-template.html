@@ -62,7 +62,48 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 {{SITE_NAME}}. جميع الحقوق محفوظة.</p>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>{{SITE_NAME}}</h2>
+                <p>أخبار كرة القدم، نتائج المباريات، وتحليلات</p>
+            </div>
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="/">الرئيسية</a></li>
+                    <li><a href="/pages/news/">الأخبار</a></li>
+                    <li><a href="/pages/matches.html">المباريات</a></li>
+                    <li><a href="/pages/competitions">البطولات</a></li>
+                    <li><a href="/pages/contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-ads">
+                <h4>إعلانات دوفلو</h4>
+                <div class="ad-placeholder">
+                    <!-- ضع كود إعلان دوفلو هنا -->
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                         data-ad-slot="YOUR_AD_SLOT_ID"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+            <div class="footer-social">
+                <h4>تابعنا</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 {{SITE_NAME}}. جميع الحقوق محفوظة.</p>
+        </div>
     </footer>
 
     <script src="{{SITE_URL}}/js/main.js"></script>
