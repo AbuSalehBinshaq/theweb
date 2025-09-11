@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{META_TITLE}} - {{SITE_NAME}}</title>
-    <link rel="icon" type="image/x-icon" href="https://kasrahh.blogspot.com/favicon.ico">
-    <meta name="description" content="{{META_DESCRIPTION}}">
-    <meta name="keywords" content="{{META_KEYWORDS}}">
-    <meta name="author" content="{{AUTHOR}}">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1P6N61Y9Z3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1P6N61Y9Z3');
+</script>
+<!-- Hotjar Tracking Code for my web -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:6488102,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{META_TITLE}} - {{SITE_NAME}}</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{SITE_URL}}/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="{{SITE_URL}}/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{SITE_URL}}/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{SITE_URL}}/favicon-16x16.png">
+<link rel="manifest" href="{{SITE_URL}}/site.webmanifest">
+  
+<meta name="description" content="{{META_DESCRIPTION}}">
+<meta name="keywords" content="{{META_KEYWORDS}}">
+<meta name="author" content="{{AUTHOR}}">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{META_TITLE}}">
-    <meta property="og:description" content="{{META_DESCRIPTION}}">
-    <meta property="og:image" content="/assets/images/logo.png">
-    <meta property="og:url" content="/">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="{{SITE_NAME}}">
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="{{META_TITLE}}">
+<meta property="og:description" content="{{META_DESCRIPTION}}">
+<meta property="og:image" content="{{IMAGE}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="{{SITE_NAME}}">
     
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{META_TITLE}}">
-    <meta name="twitter:description" content="{{META_DESCRIPTION}}">
-    <meta name="twitter:image" content="{{IMAGE}}">
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{META_TITLE}}">
+<meta name="twitter:description" content="{{META_DESCRIPTION}}">
+<meta name="twitter:image" content="{{IMAGE}}">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="/">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{URL}}">
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+<!-- Stylesheets -->
+<link rel="stylesheet" href="{{SITE_URL}}/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- خطوط عربية من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- Dynamic CSS Variables -->
     <style>
         :root {
@@ -104,34 +136,58 @@
         }
     </style>
     
-    <!-- Structured Data -->
-    <script type="application/ld+json">
+<!-- Structured Data: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{META_TITLE}}",
+  "description": "{{META_DESCRIPTION}}",
+  "image": "{{IMAGE}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{AUTHOR}}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{SITE_NAME}}"
+  },
+  "datePublished": "{{PUBLISH_DATE_ISO}}",
+  "dateModified": "{{MODIFIED_DATE_ISO}}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{URL}}"
+  }
+}
+</script>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "{{META_TITLE}}",
-      "description": "{{META_DESCRIPTION}}",
-      "image": "{{IMAGE}}",
-      "author": {
-        "@type": "Person",
-        "name": "{{AUTHOR}}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{SITE_NAME}}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "/assets/images/logo.png"
-        }
-      },
-      "datePublished": "{{PUBLISH_DATE_ISO}}",
-      "dateModified": "{{MODIFIED_DATE_ISO}}",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{URL}}"
-      }
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": "{{SITE_URL}}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "أخبار",
+      "item": "{{SITE_URL}}/news/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{META_TITLE}}",
+      "item": "{{URL}}"
     }
-    </script>
+  ]
+}
+</script>
 </head>
 <body>
     <!-- Header -->
@@ -145,7 +201,7 @@
             </div>
             
             <div class="logo">
-                <h1><a href="../index.html" style="color: white; text-decoration: none;">{{SITE_NAME}}</a></h1>
+                <h1><a href="../" style="color: white; text-decoration: none;">{{SITE_NAME}}</a></h1>
             </div>
             
             <div class="search-icon">
@@ -222,23 +278,24 @@
 
     <!-- Footer Navigation -->
     <footer class="bottom-nav">
-        <a href="../index.html">
+        <a href="../">
             <i class="fas fa-house"></i>
             <span>الرئيسية</span>
         </a>
-        <a href="../pages/news/index.html">
+        <a href="../pages
+/matches.html">
             <i class="fas fa-newspaper"></i>
             <span>أخبار</span>
         </a>
-        <a href="../pages/competitions.html">
+        <a href="../pages/competitions">
             <i class="fas fa-trophy"></i>
             <span>بطولات</span>
         </a>
-        <a href="../pages/favorites.html">
+        <a href="../pages/favorites">
             <i class="fas fa-heart"></i>
             <span>المفضلة</span>
         </a>
-        <a href="../pages/more.html">
+        <a href="../pages/more">
             <i class="fas fa-bars"></i>
             <span>المزيد</span>
         </a>
@@ -296,7 +353,7 @@
             }
             
             container.innerHTML = articles.map(article => `
-                <div class="related-article-card" onclick="window.location.href='/articles/${article.slug}.html'">
+                <div class="related-article-card" onclick="window.location.href='/articles/${article.slug}'">
                     <div class="related-article-image">
                         <img src="${article.thumbnail_url || article.image_url || 'https://via.placeholder.com/200x150/1e3a8a/ffffff?text=كسرة'}" 
                              alt="${article.title}" loading="lazy">
@@ -338,5 +395,191 @@
     </script>
     
     <script src="../js/main.js"></script>
-</body>
-</html> 
+
+
+<p class="download-label">قم بتحميل كسرة</p>
+<div id="floatingAppButton" class="floating-app-btn">
+    <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="شعار تطبيق كسره">
+</div>
+
+<div id="appDownloadOverlay">
+    <div id="appDownloadPopup">
+        <span class="closeBtn" id="closeAppPopup">&times;</span>
+        <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="تطبيق كسره" />
+        <p>حمل تطبيق كسره الآن وتمتع بأحدث الأخبار الرياضية والتنبيهات أولاً بأول بسهولة وسرعة!</p>
+        <a href="https://kasrah.onrender.com/app-install-guide.html" target="_blank" class="downloadBtn" id="downloadAppBtn">تحميل التطبيق</a>
+    </div>
+</div>
+
+<style>
+/* CSS for the pop-up (same as before) */
+#appDownloadOverlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none; /* Changed to 'none' to hide it initially */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease forwards;
+}
+#appDownloadPopup {
+    background: #fff;
+    max-width: 420px;
+    width: 90%;
+    padding: 25px 30px 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    animation: slideDown 0.4s ease forwards;
+}
+#appDownloadPopup .closeBtn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+#appDownloadPopup .closeBtn:hover {
+    color: #333;
+}
+#appDownloadPopup img {
+    max-width: 150px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#appDownloadPopup p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #222;
+}
+#appDownloadPopup .downloadBtn {
+    background-color: #d32f2f;
+    color: white;
+    font-size: 17px;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    user-select: none;
+}
+#appDownloadPopup .downloadBtn:hover {
+    background-color: #9a2222;
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes slideDown {
+    from {transform: translateY(-20px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+@media (max-width: 480px) {
+    #appDownloadPopup {
+        padding: 20px 20px 25px;
+        width: 95%;
+    }
+    #appDownloadPopup p {
+        font-size: 16px;
+    }
+    #appDownloadPopup .downloadBtn {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+}
+
+/* New CSS for the floating button and permanent label */
+.floating-app-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+.floating-app-btn:hover {
+    transform: scale(1.1);
+}
+.floating-app-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.download-label {
+    position: fixed;
+    bottom: 85px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* No hover effect, it's always visible */
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+</style>
+
+<script>
+(function() {
+    const overlay = document.getElementById('appDownloadOverlay');
+    const closeBtn = document.getElementById('closeAppPopup');
+    const downloadBtn = document.getElementById('downloadAppBtn');
+    const floatingBtn = document.getElementById('floatingAppButton');
+
+    floatingBtn.addEventListener('click', () => {
+        overlay.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.style.display = 'none';
+        }
+    });
+
+    // Google Analytics tracking
+    downloadBtn.addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'download_app', {
+                'event_category': 'engagement',
+                'event_label': 'تحميل تطبيق كسرة'
+            });
+        }
+    });
+
+    window.addEventListener('appinstalled', () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'app_installed', {
+                'event_category': 'engagement',
+                'event_label': 'تثبيت تطبيق كسرة'
+            });
+        }
+    });
+})();
