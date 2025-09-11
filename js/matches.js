@@ -46,7 +46,9 @@ class MatchesDisplay {
             // Try to load from API first, then fallback to sample data
             let matches = await this.fetchMatchesFromAPI();
             
-
+            if (!matches || matches.length === 0) {
+                matches = this.getSampleMatches();
+            }
 
             this.matches = matches;
             this.displayMatches();
@@ -58,7 +60,7 @@ class MatchesDisplay {
 
     async fetchMatchesFromAPI() {
         try {
-            const response = await fetch("/matches.json");
+            const response = await fetch('/api/matches.json');
             if (response.ok) {
                 const data = await response.json();
                 return Object.values(data);
@@ -69,7 +71,52 @@ class MatchesDisplay {
         return null;
     }
 
-
+    getSampleMatches() {
+        return [
+            {
+                "match_id": "sample_match_1",
+                "league_name": "الدوري السعودي للمحترفين",
+                "home_team": "الهلال",
+                "away_team": "النصر",
+                "home_team_logo": "https://via.placeholder.com/40x40/1e3a8a/ffffff?text=الهلال",
+                "away_team_logo": "https://via.placeholder.com/40x40/f59e0b/ffffff?text=النصر",
+                "match_date": "2025-09-11",
+                "match_time": "20:00",
+                "full_time_score": "2-1",
+                "status": "انتهت",
+                "match_url": "#",
+                "last_updated": "2025-09-11T17:00:00.000000"
+            },
+            {
+                "match_id": "sample_match_2",
+                "league_name": "دوري أبطال آسيا",
+                "home_team": "الاتحاد",
+                "away_team": "الأهلي",
+                "home_team_logo": "https://via.placeholder.com/40x40/10b981/ffffff?text=الاتحاد",
+                "away_team_logo": "https://via.placeholder.com/40x40/ef4444/ffffff?text=الأهلي",
+                "match_date": "2025-09-11",
+                "match_time": "22:30",
+                "full_time_score": "1-0",
+                "status": "مباشر",
+                "match_url": "#",
+                "last_updated": "2025-09-11T19:30:00.000000"
+            },
+            {
+                "match_id": "sample_match_3",
+                "league_name": "الدوري السعودي للمحترفين",
+                "home_team": "الشباب",
+                "away_team": "الفتح",
+                "home_team_logo": "https://via.placeholder.com/40x40/8b5cf6/ffffff?text=الشباب",
+                "away_team_logo": "https://via.placeholder.com/40x40/06b6d4/ffffff?text=الفتح",
+                "match_date": "2025-09-12",
+                "match_time": "18:00",
+                "full_time_score": "",
+                "status": "قادمة",
+                "match_url": "#",
+                "last_updated": "2025-09-11T15:00:00.000000"
+            }
+        ];
+    }
 
     displayMatches() {
         const matchesList = document.getElementById('matchesList');
