@@ -386,10 +386,85 @@ body {
     height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
+    loading: lazy;
+    border-radius: 12px 12px 0 0;
 }
 
 .article-card:hover img {
     transform: scale(1.05);
+}
+
+/* Image optimization for different screen sizes */
+@media (max-width: 768px) {
+    .article-card img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-card img {
+        height: 150px;
+    }
+}
+
+/* Lazy loading and performance improvements */
+.article-card img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.article-card img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Image placeholder while loading */
+.article-card .image-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 12px 12px 0 0;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Hero image optimization */
+.hero-article img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    loading: eager;
+}
+
+/* Article content images */
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    loading: lazy;
+}
+
+/* Related articles images */
+.related-article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    loading: lazy;
+    transition: transform 0.3s ease;
+}
+
+.related-article-card:hover .related-article-image img {
+    transform: scale(1.1);
 }
 
 .card-content {
@@ -596,22 +671,74 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .hero-article {
+        height: 300px;
+    }
+    
+    .hero-overlay h2 {
+        font-size: 1.5rem;
+    }
+    
+    .articles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    
+    .matches-section {
+        padding: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
         gap: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
     }
     
     .main-nav ul {
         gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .main-nav a {
+        font-size: 0.9rem;
+    }
+    
+    .search-bar {
+        width: 100%;
+        max-width: 300px;
     }
     
     .search-bar input {
-        width: 150px;
+        width: 100%;
+        min-width: 150px;
+    }
+    
+    .main-content {
+        padding: 1rem 0.5rem;
+    }
+    
+    .hero-article {
+        height: 250px;
+    }
+    
+    .hero-overlay {
+        padding: 1rem;
     }
     
     .hero-overlay h2 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     .hero-overlay p {
@@ -620,6 +747,23 @@ body {
     
     .articles-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .article-card img {
+        height: 180px;
+    }
+    
+    .card-content {
+        padding: 1rem;
+    }
+    
+    .card-content h3 {
+        font-size: 1rem;
+    }
+    
+    .card-content p {
+        font-size: 0.85rem;
     }
     
     .article-title {
@@ -634,12 +778,12 @@ body {
     .share-buttons {
         padding: 1rem;
         gap: 0.5rem;
+        flex-direction: column;
     }
     
     .share-btn {
-        flex: 1;
         justify-content: center;
-        min-width: calc(50% - 0.25rem);
+        width: 100%;
     }
     
     .match-teams {
@@ -655,33 +799,157 @@ body {
     .team {
         flex-direction: row;
         justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-content {
-        padding: 1rem 0.5rem;
+        gap: 1rem;
     }
     
-    .hero-article {
-        height: 250px;
+    .team-logo {
+        width: 40px;
+        height: 40px;
     }
     
-    .hero-overlay {
-        padding: 1rem;
+    .team-name {
+        font-size: 0.85rem;
     }
     
-    .article-header,
-    .article-body {
-        padding: 1.5rem;
+    .matches-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
     }
     
-    .matches-section {
-        padding: 1rem;
+    .matches-title {
+        font-size: 1.3rem;
     }
     
     .section-title {
         font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.5rem 0;
+    }
+    
+    .header-container {
+        padding: 0 0.25rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .main-nav ul {
+        gap: 0.5rem;
+    }
+    
+    .main-nav a {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .main-content {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    .hero-article {
+        height: 200px;
+        border-radius: 10px;
+    }
+    
+    .hero-overlay {
+        padding: 0.75rem;
+    }
+    
+    .hero-overlay h2 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+    }
+    
+    .hero-overlay p {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .read-more {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .matches-section {
+        padding: 0.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .match-card {
+        padding: 0.75rem;
+    }
+    
+    .team-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .team-name {
+        font-size: 0.8rem;
+    }
+    
+    .score {
+        font-size: 1.2rem;
+    }
+    
+    .article-card img {
+        height: 150px;
+    }
+    
+    .card-content {
+        padding: 0.75rem;
+    }
+    
+    .card-content h3 {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+    
+    .card-content p {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 2;
+    }
+    
+    .article-date {
+        font-size: 0.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .section-title::after {
+        width: 40px;
+        height: 2px;
+    }
+    
+    .article-header,
+    .article-body {
+        padding: 1rem;
+    }
+    
+    .article-title {
+        font-size: 1.5rem;
+    }
+    
+    .article-body {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .article-body h2 {
+        font-size: 1.3rem;
+    }
+    
+    .article-body h3 {
+        font-size: 1.1rem;
     }
 }
 
@@ -1037,5 +1305,221 @@ body {
     color: #666;
     font-style: italic;
     padding: 2rem;
+}
+
+
+/* Advertisement Placeholders */
+.ad-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.ad-banner {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px dashed #DC143C;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.ad-banner:hover {
+    border-color: #8B0000;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+}
+
+.ad-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.ad-banner i {
+    font-size: 2rem;
+    color: #DC143C;
+    margin-bottom: 0.5rem;
+}
+
+.ad-banner .ad-text {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.ad-banner .ad-size {
+    font-size: 0.8rem;
+    color: #8B0000;
+    font-weight: 500;
+}
+
+/* Standard Ad Sizes */
+.ad-leaderboard {
+    width: 100%;
+    max-width: 728px;
+    height: 90px;
+    margin: 0 auto;
+}
+
+.ad-banner-300x250 {
+    width: 300px;
+    height: 250px;
+    margin: 1rem auto;
+}
+
+.ad-rectangle {
+    width: 336px;
+    height: 280px;
+    margin: 1rem auto;
+}
+
+.ad-skyscraper {
+    width: 160px;
+    height: 600px;
+    margin: 1rem auto;
+}
+
+.ad-mobile-banner {
+    width: 320px;
+    height: 50px;
+    margin: 1rem auto;
+}
+
+.ad-square {
+    width: 250px;
+    height: 250px;
+    margin: 1rem auto;
+}
+
+/* Responsive Ad Containers */
+.ad-sidebar {
+    position: sticky;
+    top: 100px;
+    margin-left: 2rem;
+}
+
+.ad-inline {
+    margin: 3rem 0;
+}
+
+.ad-header {
+    margin: 1rem 0;
+}
+
+.ad-footer {
+    margin: 2rem 0 1rem;
+}
+
+/* Mobile Ad Adjustments */
+@media (max-width: 768px) {
+    .ad-leaderboard {
+        max-width: 320px;
+        height: 50px;
+    }
+    
+    .ad-banner-300x250 {
+        width: 280px;
+        height: 200px;
+    }
+    
+    .ad-rectangle {
+        width: 300px;
+        height: 250px;
+    }
+    
+    .ad-skyscraper {
+        width: 120px;
+        height: 400px;
+    }
+    
+    .ad-sidebar {
+        position: static;
+        margin: 1rem 0;
+    }
+    
+    .ad-banner i {
+        font-size: 1.5rem;
+    }
+    
+    .ad-banner .ad-text {
+        font-size: 0.9rem;
+    }
+    
+    .ad-banner .ad-size {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ad-banner-300x250,
+    .ad-rectangle,
+    .ad-square {
+        width: 280px;
+        height: 180px;
+    }
+    
+    .ad-skyscraper {
+        width: 100px;
+        height: 300px;
+    }
+    
+    .ad-mobile-banner {
+        width: 280px;
+        height: 50px;
+    }
+}
+
+/* Ad Layout Integration */
+.main-content-with-ads {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.content-area {
+    min-width: 0;
+}
+
+.ads-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .main-content-with-ads {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .ads-sidebar {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .ads-sidebar {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
