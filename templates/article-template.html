@@ -40,7 +40,7 @@
 <meta property="og:title" content="{{META_TITLE}}">
 <meta property="og:description" content="{{META_DESCRIPTION}}">
 <meta property="og:image" content="{{IMAGE}}">
-<meta property="og:url" content="{{URL}}">
+<meta property="og:url" content="{{SITE_URL}}/{{SLUG}}">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="{{SITE_NAME}}">
     
@@ -52,7 +52,7 @@
     
 
 <!-- Canonical URL -->
-<link rel="canonical" href="{{URL}}">
+<link rel="canonical" href="{{SITE_URL}}/{{SLUG}}">
     
     
 <!-- Stylesheets -->
@@ -98,216 +98,178 @@
         .article-meta {
             display: flex;
             gap: 2rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
         }
         
-        .meta-item {
+        .article-meta span {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #6b7280;
-            font-size: 0.95rem;
+            color: #666;
+            font-size: 0.9rem;
         }
         
-        .meta-item i {
+        .article-meta i {
             color: var(--primary-color);
-            font-size: 1rem;
         }
         
-        .share-btn {
-            background: var(--primary-color);
-        }
-        
-        .share-btn:hover {
-            background: var(--secondary-color);
-        }
-        
-        @media (max-width: 768px) {
-            .article-title {
-                font-size: 2rem;
-            }
-            
-            .article-meta {
-                flex-direction: column;
-                gap: 1rem;
-            }
+        .bottom-nav a.active {
+            color: var(--primary-color);
         }
     </style>
-    
-<!-- Structured Data: Article -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{META_TITLE}}",
-  "description": "{{META_DESCRIPTION}}",
-  "image": "{{IMAGE}}",
-  "author": {
-    "@type": "Person",
-    "name": "{{AUTHOR}}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "{{SITE_NAME}}"
-  },
-  "datePublished": "{{PUBLISH_DATE_ISO}}",
-  "dateModified": "{{MODIFIED_DATE_ISO}}",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{URL}}"
-  }
-}
-</script>
 
-<!-- Structured Data: BreadcrumbList -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "الرئيسية",
-      "item": "{{SITE_URL}}/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "أخبار",
-      "item": "{{SITE_URL}}/news/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "{{META_TITLE}}",
-      "item": "{{URL}}"
-    }
-  ]
-}
-</script>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <div class="language-switch">
-                <button class="lang-btn" onclick="toggleLanguage()">
-                    <i class="fas fa-globe"></i>
-                    <span id="lang-text">EN</span>
-                </button>
-            </div>
-            
             <div class="logo">
-                <h1><a href="../" style="color: white; text-decoration: none;">{{SITE_NAME}}</a></h1>
+                <h1><a href="/" style="color: white; text-decoration: none;">{{SITE_NAME}}</a></h1>
             </div>
-            
-            <div class="search-icon">
-                <button class="search-btn" onclick="toggleSearch()">
-                    <i class="fas fa-search"></i>
-                </button>
+            <div class="search-bar">
+                <input type="text" placeholder="بحث..." id="searchInput">
+                <button><i class="fas fa-search"></i></button>
             </div>
-        </div>
-        
-        <!-- Search Bar -->
-        <div class="search-bar" id="searchBar">
-            <input type="text" placeholder="ابحث في المقالات..." id="searchInput">
-            <button onclick="searchArticles()">
-                <i class="fas fa-search"></i>
-            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">الرئيسية</a></li>
+                    <li><a href="/pages/news/">الأخبار</a></li>
+                    <li><a href="/pages/matches.html">المباريات</a></li>
+                    <li><a href="/pages/competitions">البطولات</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Article Content -->
+    <!-- Main Content -->
     <main class="main-content">
-        <article class="article-page">
+        <article class="article-container">
             <div class="article-header">
                 <div class="article-category">
                     <span class="category-badge">{{CATEGORY}}</span>
                 </div>
                 <h1 class="article-title">{{TITLE}}</h1>
                 <div class="article-meta">
-                    <div class="meta-item">
-                        <i class="fas fa-user"></i>
-                        <span>{{AUTHOR}}</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-calendar"></i>
-                        <span>{{PUBLISH_DATE}}</span>
-                    </div>
+                    <span class="author"><i class="fas fa-user"></i> {{AUTHOR}}</span>
+                    <span class="date"><i class="fas fa-calendar"></i> {{PUBLISH_DATE}}</span>
+                    <span class="views"><i class="fas fa-eye"></i> {{VIEWS}} مشاهدة</span>
                 </div>
             </div>
             
-            <div class="article-body">
-                <div class="article-content">
-                    {{CONTENT}}
-                </div>
-                
-                <!-- Share Buttons -->
-                <div class="share-buttons">
-                    <a href="#" class="share-btn facebook" onclick="shareArticle('facebook')">
-                        <i class="fab fa-facebook-f"></i>
-                        فيسبوك
-                    </a>
-                    <a href="#" class="share-btn twitter" onclick="shareArticle('twitter')">
-                        <i class="fab fa-twitter"></i>
-                        تويتر
-                    </a>
-                    <a href="#" class="share-btn whatsapp" onclick="shareArticle('whatsapp')">
-                        <i class="fab fa-whatsapp"></i>
-                        واتساب
-                    </a>
-                    <a href="#" class="share-btn telegram" onclick="shareArticle('telegram')">
-                        <i class="fab fa-telegram"></i>
-                        تليجرام
-                    </a>
+            <div class="article-image">
+                <img src="{{IMAGE}}" alt="{{TITLE}}" loading="lazy">
+            </div>
+            
+            <div class="article-content">
+                {{CONTENT}}
+            </div>
+            
+            <div class="article-footer">
+                <div class="share-section">
+                    <h4>شارك المقال</h4>
+                    <div class="share-buttons">
+                        <button class="share-btn facebook" onclick="shareArticle('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>فيسبوك</span>
+                        </button>
+                        <button class="share-btn twitter" onclick="shareArticle('twitter')">
+                            <i class="fab fa-twitter"></i>
+                            <span>تويتر</span>
+                        </button>
+                        <button class="share-btn whatsapp" onclick="shareArticle('whatsapp')">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>واتساب</span>
+                        </button>
+                        <button class="share-btn telegram" onclick="shareArticle('telegram')">
+                            <i class="fab fa-telegram"></i>
+                            <span>تليجرام</span>
+                        </button>
+                    </div>
                 </div>
                 
                 <!-- Related Articles -->
                 <div class="related-articles">
                     <h3>مقالات ذات صلة</h3>
                     <div id="relatedArticlesContainer" class="related-articles-grid">
-                        <div class="loading">جاري تحميل المقالات ذات الصلة...</div>
+                        <!-- Related articles will be loaded dynamically -->
                     </div>
                 </div>
             </div>
         </article>
     </main>
 
-    <!-- Footer Navigation -->
-    <footer class="bottom-nav">
-        <a href="../">
-            <i class="fas fa-house"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="../pages
-/matches.html">
-            <i class="fas fa-newspaper"></i>
-            <span>أخبار</span>
-        </a>
-        <a href="../pages/competitions">
-            <i class="fas fa-trophy"></i>
-            <span>بطولات</span>
-        </a>
-        <a href="../pages/favorites">
-            <i class="fas fa-heart"></i>
-            <span>المفضلة</span>
-        </a>
-        <a href="../pages/more">
-            <i class="fas fa-bars"></i>
-            <span>المزيد</span>
-        </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Quick Pages Section -->
+            <div class="footer-section">
+                <h3>صفحات سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="/">الرئيسية</a></li>
+                    <li><a href="/pages/news/">الأخبار</a></li>
+                    <li><a href="/pages/matches.html">المباريات</a></li>
+                    <li><a href="/pages/competitions">البطولات</a></li>
+                    <li><a href="/pages/teams">الفرق</a></li>
+                    <li><a href="/pages/players">اللاعبون</a></li>
+                    <li><a href="/pages/transfers">الانتقالات</a></li>
+                    <li><a href="/pages/statistics">الإحصائيات</a></li>
+                </ul>
+            </div>
+            
+            <!-- Site Info Section -->
+            <div class="footer-section">
+                <h3>{{SITE_NAME}}</h3>
+                <p class="footer-description">موقع رياضي متخصص في تغطية أخبار كرة القدم، نتائج المباريات، والتحليلات الرياضية. نقدم لك أحدث الأخبار والمعلومات من عالم الرياضة.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            
+            <!-- Ads Section -->
+            <div class="footer-section">
+                <h3>إعلانات دوفلو</h3>
+                <div class="ads-container">
+                    <div class="ad-placeholder">
+                        <p>مساحة إعلانية</p>
+                        <span>320x100</span>
+                    </div>
+                    <div class="ad-links">
+                        <a href="#" class="ad-link">إعلن معنا</a>
+                        <a href="#" class="ad-link">شروط الإعلان</a>
+                        <a href="#" class="ad-link">تواصل معنا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2025 {{SITE_NAME}}. جميع الحقوق محفوظة.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">سياسة الخصوصية</a>
+                    <a href="/terms">شروط الاستخدام</a>
+                    <a href="/contact">اتصل بنا</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <script src="{{SITE_URL}}/js/main.js"></script>
     <script>
         // متغيرات المقال
         const currentArticle = {
             title: "{{TITLE}}",
             slug: "{{SLUG}}",
             category: "{{CATEGORY}}",
-            url: "{{URL}}"
+            url: "{{SITE_URL}}/{{SLUG}}"
         };
         
         // مشاركة المقال
@@ -328,64 +290,35 @@
         }
         
         // تحميل المقالات ذات الصلة
-        async function loadRelatedArticles() {
-            try {
-                const response = await fetch(`/api/articles?category={{CATEGORY}}&exclude={{ID}}&limit=3`);
-                if (response.ok) {
-                    const articles = await response.json();
-                    displayRelatedArticles(articles);
-                }
-            } catch (error) {
-                console.error('خطأ في تحميل المقالات ذات الصلة:', error);
-                document.getElementById('relatedArticlesContainer').innerHTML = 
-                    '<div class="no-related">لا توجد مقالات ذات صلة</div>';
-            }
-        }
-        
-        // عرض المقالات ذات الصلة
-        function displayRelatedArticles(articles) {
+        function loadRelatedArticles() {
             const container = document.getElementById('relatedArticlesContainer');
-            if (!container) return;
             
-            if (articles.length === 0) {
-                container.innerHTML = '<div class="no-related">لا توجد مقالات ذات صلة</div>';
-                return;
-            }
-            
-            container.innerHTML = articles.map(article => `
-                <div class="related-article-card" onclick="window.location.href='/articles/${article.slug}'">
-                    <div class="related-article-image">
-                        <img src="${article.thumbnail_url || article.image_url || 'https://via.placeholder.com/200x150/1e3a8a/ffffff?text=كسرة'}" 
-                             alt="${article.title}" loading="lazy">
-                    </div>
-                    <div class="related-article-content">
-                        <h4 class="related-article-title">${article.title}</h4>
-                        <p class="related-article-date">${formatDate(article.published_at)}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // تنسيق التاريخ
-        function formatDate(dateString) {
-            if (!dateString) return '';
-            
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffTime = Math.abs(now - date);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
-            if (diffDays === 1) {
-                return 'منذ يوم';
-            } else if (diffDays < 7) {
-                return `منذ ${diffDays} أيام`;
-            } else {
-                return date.toLocaleDateString('ar-SA', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
+            // استدعاء API للحصول على المقالات ذات الصلة
+            fetch(`/api/articles?category=${encodeURIComponent(currentArticle.category)}&exclude=${encodeURIComponent(currentArticle.slug)}&limit=3`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.articles && data.articles.length > 0) {
+                        container.innerHTML = data.articles.map(article => `
+                            <div class="related-article-card">
+                                <div class="related-article-image">
+                                    <img src="${article.image}" alt="${article.title}" loading="lazy">
+                                </div>
+                                <div class="related-article-content">
+                                    <h4 class="related-article-title">
+                                        <a href="${article.url}">${article.title}</a>
+                                    </h4>
+                                    <p class="related-article-date">${article.publish_date}</p>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        container.innerHTML = '<p class="no-related-articles">لا توجد مقالات ذات صلة حالياً.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('خطأ في تحميل المقالات ذات الصلة:', error);
+                    container.innerHTML = '<p class="no-related-articles">حدث خطأ في تحميل المقالات ذات الصلة.</p>';
                 });
-            }
         }
         
         // تحميل المقالات ذات الصلة عند تحميل الصفحة
@@ -393,193 +326,6 @@
             loadRelatedArticles();
         });
     </script>
-    
-    <script src="../js/main.js"></script>
+</body>
+</html>
 
-
-<p class="download-label">قم بتحميل كسرة</p>
-<div id="floatingAppButton" class="floating-app-btn">
-    <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="شعار تطبيق كسره">
-</div>
-
-<div id="appDownloadOverlay">
-    <div id="appDownloadPopup">
-        <span class="closeBtn" id="closeAppPopup">&times;</span>
-        <img src="https://kasrah.onrender.com/android-chrome-512x512.png" alt="تطبيق كسره" />
-        <p>حمل تطبيق كسره الآن وتمتع بأحدث الأخبار الرياضية والتنبيهات أولاً بأول بسهولة وسرعة!</p>
-        <a href="https://kasrah.onrender.com/app-install-guide.html" target="_blank" class="downloadBtn" id="downloadAppBtn">تحميل التطبيق</a>
-    </div>
-</div>
-
-<style>
-/* CSS for the pop-up (same as before) */
-#appDownloadOverlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: none; /* Changed to 'none' to hide it initially */
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    animation: fadeIn 0.3s ease forwards;
-}
-#appDownloadPopup {
-    background: #fff;
-    max-width: 420px;
-    width: 90%;
-    padding: 25px 30px 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    position: relative;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    animation: slideDown 0.4s ease forwards;
-}
-#appDownloadPopup .closeBtn {
-    position: absolute;
-    top: 15px; right: 20px;
-    font-size: 24px;
-    color: #888;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-#appDownloadPopup .closeBtn:hover {
-    color: #333;
-}
-#appDownloadPopup img {
-    max-width: 150px;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-#appDownloadPopup p {
-    font-size: 18px;
-    margin-bottom: 25px;
-    color: #222;
-}
-#appDownloadPopup .downloadBtn {
-    background-color: #d32f2f;
-    color: white;
-    font-size: 17px;
-    padding: 12px 35px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    user-select: none;
-}
-#appDownloadPopup .downloadBtn:hover {
-    background-color: #9a2222;
-}
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-@keyframes slideDown {
-    from {transform: translateY(-20px); opacity: 0;}
-    to {transform: translateY(0); opacity: 1;}
-}
-@media (max-width: 480px) {
-    #appDownloadPopup {
-        padding: 20px 20px 25px;
-        width: 95%;
-    }
-    #appDownloadPopup p {
-        font-size: 16px;
-    }
-    #appDownloadPopup .downloadBtn {
-        font-size: 16px;
-        padding: 10px 25px;
-    }
-}
-
-/* New CSS for the floating button and permanent label */
-.floating-app-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    transition: transform 0.3s ease;
-}
-.floating-app-btn:hover {
-    transform: scale(1.1);
-}
-.floating-app-btn img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
-}
-
-.download-label {
-    position: fixed;
-    bottom: 85px;
-    right: 5px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 5px 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    z-index: 1000;
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    /* No hover effect, it's always visible */
-    opacity: 1;
-    transform: translateX(0);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-</style>
-
-<script>
-(function() {
-    const overlay = document.getElementById('appDownloadOverlay');
-    const closeBtn = document.getElementById('closeAppPopup');
-    const downloadBtn = document.getElementById('downloadAppBtn');
-    const floatingBtn = document.getElementById('floatingAppButton');
-
-    floatingBtn.addEventListener('click', () => {
-        overlay.style.display = 'flex';
-    });
-
-    closeBtn.addEventListener('click', () => {
-        overlay.style.display = 'none';
-    });
-
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-            overlay.style.display = 'none';
-        }
-    });
-
-    // Google Analytics tracking
-    downloadBtn.addEventListener('click', () => {
-        if (typeof gtag === 'function') {
-            gtag('event', 'download_app', {
-                'event_category': 'engagement',
-                'event_label': 'تحميل تطبيق كسرة'
-            });
-        }
-    });
-
-    window.addEventListener('appinstalled', () => {
-        if (typeof gtag === 'function') {
-            gtag('event', 'app_installed', {
-                'event_category': 'engagement',
-                'event_label': 'تثبيت تطبيق كسرة'
-            });
-        }
-    });
-})();
