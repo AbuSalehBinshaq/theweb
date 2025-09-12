@@ -873,15 +873,15 @@ body {
 .article-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
 }
 
 .article-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .article-image {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     text-align: center;
 }
 
