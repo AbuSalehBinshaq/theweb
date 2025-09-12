@@ -127,6 +127,15 @@
     </header>
 
     <main class="main-content">
+        <!-- Header Ad -->
+        <div class="ad-container ad-header">
+            <div class="ad-banner ad-leaderboard">
+                <i class="fas fa-ad"></i>
+                <div class="ad-text">مساحة إعلانية</div>
+                <div class="ad-size">728x90</div>
+            </div>
+        </div>
+
         <section class="hero-section">
             <div class="hero-article">
                 <img src="https://via.placeholder.com/800x450/1e3a8a/ffffff?text=أخبار+عاجلة" alt="أخبار عاجلة">
@@ -142,13 +151,63 @@
             <!-- Matches will be loaded here by js/matches.js -->
         </section>
 
-        <section class="articles-section">
-            <h2 class="section-title">آخر الأخبار</h2>
-            <div class="articles-grid">
-                {{ARTICLES_HTML}}
-
+        <!-- Inline Ad -->
+        <div class="ad-container ad-inline">
+            <div class="ad-banner ad-banner-300x250">
+                <i class="fas fa-bullhorn"></i>
+                <div class="ad-text">إعلان مميز</div>
+                <div class="ad-size">300x250</div>
             </div>
-        </section>
+        </div>
+
+        <div class="main-content-with-ads">
+            <div class="content-area">
+                <section class="articles-section">
+                    <h2 class="section-title">آخر الأخبار</h2>
+                    <div class="articles-grid">
+                        {{ARTICLES_HTML}}
+                    </div>
+                </section>
+            </div>
+            
+            <div class="ads-sidebar">
+                <!-- Sidebar Ad 1 -->
+                <div class="ad-container">
+                    <div class="ad-banner ad-rectangle">
+                        <i class="fas fa-newspaper"></i>
+                        <div class="ad-text">إعلان جانبي</div>
+                        <div class="ad-size">336x280</div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar Ad 2 -->
+                <div class="ad-container">
+                    <div class="ad-banner ad-square">
+                        <i class="fas fa-star"></i>
+                        <div class="ad-text">إعلان مربع</div>
+                        <div class="ad-size">250x250</div>
+                    </div>
+                </div>
+                
+                <!-- Skyscraper Ad -->
+                <div class="ad-container">
+                    <div class="ad-banner ad-skyscraper">
+                        <i class="fas fa-building"></i>
+                        <div class="ad-text">إعلان طويل</div>
+                        <div class="ad-size">160x600</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Ad -->
+        <div class="ad-container ad-footer">
+            <div class="ad-banner ad-leaderboard">
+                <i class="fas fa-tags"></i>
+                <div class="ad-text">إعلان سفلي</div>
+                <div class="ad-size">728x90</div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">

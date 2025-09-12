@@ -147,55 +147,124 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <article class="article-container">
-            <div class="article-header">
-                <div class="article-category">
-                    <span class="category-badge">{{CATEGORY}}</span>
-                </div>
-                <h1 class="article-title">{{TITLE}}</h1>
-                <div class="article-meta">
-                    <span class="author"><i class="fas fa-user"></i> {{AUTHOR}}</span>
-                    <span class="date"><i class="fas fa-calendar"></i> {{PUBLISH_DATE}}</span>
-                    <span class="views"><i class="fas fa-eye"></i> {{VIEWS}} مشاهدة</span>
-                </div>
+        <!-- Header Ad -->
+        <div class="ad-container ad-header">
+            <div class="ad-banner ad-leaderboard">
+                <i class="fas fa-ad"></i>
+                <div class="ad-text">مساحة إعلانية</div>
+                <div class="ad-size">728x90</div>
+            </div>
+        </div>
+
+        <div class="main-content-with-ads">
+            <div class="content-area">
+                <article class="article-container">
+                    <div class="article-header">
+                        <div class="article-category">
+                            <span class="category-badge">{{CATEGORY}}</span>
+                        </div>
+                        <h1 class="article-title">{{TITLE}}</h1>
+                        <div class="article-meta">
+                            <span class="author"><i class="fas fa-user"></i> {{AUTHOR}}</span>
+                            <span class="date"><i class="fas fa-calendar"></i> {{DATE}}</span>
+                            <span class="views"><i class="fas fa-eye"></i> {{VIEWS}} مشاهدة</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Inline Ad after header -->
+                    <div class="ad-container ad-inline">
+                        <div class="ad-banner ad-banner-300x250">
+                            <i class="fas fa-bullhorn"></i>
+                            <div class="ad-text">إعلان داخل المقال</div>
+                            <div class="ad-size">300x250</div>
+                        </div>
+                    </div>
+                    
+                    <div class="article-content">
+                        {{CONTENT}}
+                    </div>
+                    
+                    <!-- Another inline ad before footer -->
+                    <div class="ad-container ad-inline">
+                        <div class="ad-banner ad-rectangle">
+                            <i class="fas fa-newspaper"></i>
+                            <div class="ad-text">إعلان قبل النهاية</div>
+                            <div class="ad-size">336x280</div>
+                        </div>
+                    </div>
+                    
+                    <div class="article-footer">
+                        <div class="share-section">
+                            <h4>شارك المقال</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn facebook" onclick="shareArticle('facebook')">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <span>فيسبوك</span>
+                                </button>
+                                <button class="share-btn twitter" onclick="shareArticle('twitter')">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>تويتر</span>
+                                </button>
+                                <button class="share-btn whatsapp" onclick="shareArticle('whatsapp')">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>واتساب</span>
+                                </button>
+                                <button class="share-btn telegram" onclick="shareArticle('telegram')">
+                                    <i class="fab fa-telegram"></i>
+                                    <span>تليجرام</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Related Articles -->
+                        <div class="related-articles">
+                            <h3>مقالات ذات صلة</h3>
+                            <div id="relatedArticlesContainer" class="related-articles-grid">
+                                <div class="loading">جاري تحميل المقالات ذات الصلة...</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
             
-            <div class="article-content">
-                {{CONTENT}}
-            </div>
-            
-            <div class="article-footer">
-                <div class="share-section">
-                    <h4>شارك المقال</h4>
-                    <div class="share-buttons">
-                        <button class="share-btn facebook" onclick="shareArticle('facebook')">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>فيسبوك</span>
-                        </button>
-                        <button class="share-btn twitter" onclick="shareArticle('twitter')">
-                            <i class="fab fa-twitter"></i>
-                            <span>تويتر</span>
-                        </button>
-                        <button class="share-btn whatsapp" onclick="shareArticle('whatsapp')">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>واتساب</span>
-                        </button>
-                        <button class="share-btn telegram" onclick="shareArticle('telegram')">
-                            <i class="fab fa-telegram"></i>
-                            <span>تليجرام</span>
-                        </button>
+            <div class="ads-sidebar">
+                <!-- Sidebar Ad 1 -->
+                <div class="ad-container">
+                    <div class="ad-banner ad-rectangle">
+                        <i class="fas fa-newspaper"></i>
+                        <div class="ad-text">إعلان جانبي</div>
+                        <div class="ad-size">336x280</div>
                     </div>
                 </div>
                 
-                <!-- Related Articles -->
-                <div class="related-articles">
-                    <h3>مقالات ذات صلة</h3>
-                    <div id="relatedArticlesContainer" class="related-articles-grid">
-                        <!-- Related articles will be loaded dynamically -->
+                <!-- Sidebar Ad 2 -->
+                <div class="ad-container">
+                    <div class="ad-banner ad-square">
+                        <i class="fas fa-star"></i>
+                        <div class="ad-text">إعلان مربع</div>
+                        <div class="ad-size">250x250</div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Banner Ad (visible only on mobile) -->
+                <div class="ad-container">
+                    <div class="ad-banner ad-mobile-banner">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div class="ad-text">إعلان موبايل</div>
+                        <div class="ad-size">320x50</div>
                     </div>
                 </div>
             </div>
-        </article>
+        </div>
+
+        <!-- Footer Ad -->
+        <div class="ad-container ad-footer">
+            <div class="ad-banner ad-leaderboard">
+                <i class="fas fa-tags"></i>
+                <div class="ad-text">إعلان سفلي</div>
+                <div class="ad-size">728x90</div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
