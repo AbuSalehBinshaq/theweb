@@ -229,6 +229,26 @@ async function generateIndexHTML() {
     
     let template = fs.readFileSync(templatePath, 'utf8');
     
+    // إنشاء HTML للأخبار العاجلة (آخر 3 مقالات)
+    const breakingNews = articles.slice(0, 3);
+    const breakingNewsHTML = breakingNews.map(article => `
+        <div class="breaking-news-item">
+            <div class="breaking-news-content">
+                <img src="${article.thumbnail_url || article.image_url || 'https://via.placeholder.com/60x60/1e3a8a/ffffff?text=كسرة'}" 
+                     alt="${article.title}" class="breaking-news-image" loading="lazy">
+                <div class="breaking-news-text">
+                    <h3 class="breaking-news-title">
+                        <a href="/articles/${article.slug}" style="color: white; text-decoration: none;">${article.title}</a>
+                    </h3>
+                    <div class="breaking-news-meta">
+                        <span><i class="fas fa-user"></i> ${article.author || 'كسرة - Kasrah'}</span>
+                        <span><i class="fas fa-calendar"></i> ${new Date(article.published_at).toLocaleDateString('ar-SA')}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
     // إنشاء HTML للمقالات
     const articlesHTML = articles.map(article => `
         <div class="article-card" onclick="window.location.href='/articles/${article.slug}'">
@@ -249,6 +269,7 @@ async function generateIndexHTML() {
     
     // استبدال المتغيرات في القالب
     const replacements = {
+      '{{BREAKING_NEWS_HTML}}': breakingNewsHTML,
       '{{ARTICLES_HTML}}': articlesHTML,
       '{{SITE_URL}}': process.env.SITE_URL || 'http://localhost:3000',
       '{{SITE_NAME}}': siteSettings.site_name || 'كسرة - Kasrah',
@@ -422,7 +443,7 @@ async function generateSitemap() {
       }
       
       return {
-        loc: `${siteUrl}/articles/${article.slug}.html`,
+        loc: `${siteUrl}/articles/${article.slug}`,
         lastmod: new Date(lastmod).toISOString(),
         changefreq: daysSincePublish < 7 ? 'daily' : daysSincePublish < 30 ? 'weekly' : 'monthly',
         priority: priority
