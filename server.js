@@ -231,7 +231,7 @@ async function generateIndexHTML() {
     
     // إنشاء HTML للمقالات
     const articlesHTML = articles.map(article => `
-        <div class="article-card" onclick="window.location.href='/articles/${article.slug}.html'">
+        <div class="article-card" onclick="window.location.href='/articles/${article.slug}'">
             <div class="article-image">
                 <img src="${article.thumbnail_url || article.image_url || 'https://via.placeholder.com/400x250/1e3a8a/ffffff?text=كسرة'}" 
                      alt="${article.title}" loading="lazy">
