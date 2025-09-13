@@ -99,7 +99,7 @@ function displayArticles(articlesToShow) {
 
 // فتح مقال
 function openArticle(slug) {
-    window.location.href = `/article?slug=${slug}&lang=${currentLanguage}`;
+    window.location.href = `/articles/${slug}`;
 }
 
 // البحث في المقالات
