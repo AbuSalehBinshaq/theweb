@@ -2,8 +2,8 @@
 let articles = [];
 let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 let advertisements = [];
-let currentHeroIndex = 0;
-let heroSlides = [];
+
+
 // تحميل المقالات من قاعدة البيانات
 async function loadArticles() {
     try {
@@ -176,69 +176,6 @@ function checkSearchFromURL() {
 
 
 
-function displayHeroArticles(heroArticles) {
-    const slider = document.getElementById('heroSlider');
-    if (!slider) return;
-    slider.innerHTML = "";
-    heroSlides = heroArticles;
-    heroArticles.forEach((article, i) => {
-        const slide = document.createElement('div');
-        slide.className = 'hero-slide';
-        slide.innerHTML = `
-          <div class="hero-article">
-            <img src="${article.image_url || article.thumbnail_url || 'https://via.placeholder.com/800x450/1e3a8a/ffffff?text=خبر'}" alt="${article.title}">
-            <div class="hero-overlay">
-              <h2>${article.title}</h2>
-              <p>${article.description || ''}</p>
-              <a href="/article/${article.slug}" class="read-more">اقرأ المزيد</a>
-            </div>
-          </div>
-        `;
-        slider.appendChild(slide);
-    });
-    moveHeroSlide(0);
-}
-
-
-function moveHeroSlide(idx) {
-    const slider = document.getElementById('heroSlider');
-    if (!slider || heroSlides.length === 0) return;
-    currentHeroIndex = ((idx % heroSlides.length) + heroSlides.length) % heroSlides.length;
-    slider.style.transform = `translateX(${-currentHeroIndex * 100}%)`;
-}
-
-// أزرار التنقل ودعم السحب
-document.addEventListener("DOMContentLoaded", function() {
-    // أزرار السلايدر
-    const prevBtn = document.getElementById('heroPrev');
-    const nextBtn = document.getElementById('heroNext');
-    if (prevBtn && nextBtn) {
-        prevBtn.onclick = () => moveHeroSlide(currentHeroIndex - 1);
-        nextBtn.onclick = () => moveHeroSlide(currentHeroIndex + 1);
-    }
-
-    // دعم السحب باللمس للموبايل
-    let startX = 0;
-    let deltaX = 0;
-    let dragging = false;
-    const slider = document.getElementById('heroSlider');
-    if (slider) {
-        slider.addEventListener('touchstart', (e) => {
-            dragging = true;
-            startX = e.touches[0].clientX;
-        });
-        slider.addEventListener('touchmove', (e) => {
-            if (!dragging) return;
-            deltaX = e.touches[0].clientX - startX;
-        });
-        slider.addEventListener('touchend', () => {
-            if (!dragging) return;
-            if (deltaX > 60) moveHeroSlide(currentHeroIndex - 1); // سحب يمين
-            else if (deltaX < -60) moveHeroSlide(currentHeroIndex + 1); // سحب يسار
-            dragging = false;
-            deltaX = 0;
-        });
-    }
 
 
 // تبديل البحث
