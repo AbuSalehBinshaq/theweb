@@ -124,6 +124,28 @@
 
 </head>
 <body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const keywords = [
+    {word: "الهلال", url: "https://ar.wikipedia.org/wiki/%D9%86%D8%A7%D8%AF%D9%8A_%D8%A7%D9%84%D9%87%D9%84%D8%A7%D9%84_(%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9)"},
+    {word: "النصر", url: "https://ar.wikipedia.org/wiki/%D9%86%D8%A7%D8%AF%D9%8A_%D8%A7%D9%84%D9%86%D8%B5%D8%B1_(%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9)"},
+    {word: "المفضلة", url: "/pages/favorites"},
+    {word: "الرئيسية", url: "/"},
+    // أضف المزيد إن أردت
+  ];
+
+  // استهدف العناصر النصية في الصفحة
+  document.querySelectorAll('p, li').forEach(el => {
+    let html = el.innerHTML;
+    keywords.forEach(item => {
+      // فقط إذا لم يكن الكلمة بالفعل داخل وسم <a>
+      const regex = new RegExp(`(?<!<a[^>]*?>)(${item.word})(?![^<]*?</a>)`, 'g');
+      html = html.replace(regex, `<a href="${item.url}">$1</a>`);
+    });
+    el.innerHTML = html;
+  });
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="header-container">
