@@ -1,40 +1,44 @@
 {
-  "saudi_clubs_matches_2025_09_23": [
-    {
-      "match_id": "kings_cup_match_001",
-      "league_name": "كأس خادم الحرمين الشريفين",
-      "home_team": "الوحدة",
-      "away_team": "الاتحاد",
-      "home_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Al-Wehda_FC_logo.svg/1200px-Al-Wehda_FC_logo.svg.png",
-      "away_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Al-Ittihad_Club_logo.svg/1200px-Al-Ittihad_Club_logo.svg.png",
-      "match_date": "2025-09-23",
-      "match_time": "22:30",
-      "full_time_score": "",
-      "status": "لم تبدأ"
-    },
-    {
-      "match_id": "kings_cup_match_002",
-      "league_name": "كأس خادم الحرمين الشريفين",
-      "home_team": "جدة",
-      "away_team": "النصر",
-      "home_team_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Jeddah_Club_logo.png/220px-Jeddah_Club_logo.png",
-      "away_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Al-Nassr_FC.svg/1200px-Al-Nassr_FC.svg.png",
-      "match_date": "2025-09-23",
-      "match_time": "22:30",
-      "full_time_score": "",
-      "status": "لم تبدأ"
-    },
-    {
-      "match_id": "intercontinental_cup_match_001",
-      "league_name": "كأس القارات للأندية",
-      "home_team": "الأهلي",
-      "away_team": "بيراميدز",
-      "home_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Al-Ahli_Saudi_FC_logo.svg/1200px-Al-Ahli_Saudi_FC_logo.svg.png",
-      "away_team_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Pyramids_FC_logo.png/220px-Pyramids_FC_logo.png",
-      "match_date": "2025-09-23",
-      "match_time": "22:00",
-      "full_time_score": "",
-      "status": "لم تبدأ"
-    }
-  ]
+  "saudi_match_20250923_01": {
+    "match_id": "saudi_match_20250923_01",
+    "league_name": "كأس خادم الحرمين الشريفين",
+    "home_team": "الوحدة",
+    "away_team": "الاتحاد",
+    "home_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Al-Wehda_FC_logo.svg/1200px-Al-Wehda_FC_logo.svg.png",
+    "away_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Al-Ittihad_Club_logo.svg/1200px-Al-Ittihad_Club_logo.svg.png",
+    "match_date": "2025-09-23",
+    "match_time": "22:30",
+    "full_time_score": "",
+    "status": "لم تبدأ",
+    "match_url": "",
+    "last_updated": "2025-09-23T11:23:40.000000"
+  },
+  "saudi_match_20250923_02": {
+    "match_id": "saudi_match_20250923_02",
+    "league_name": "كأس خادم الحرمين الشريفين",
+    "home_team": "جدة",
+    "away_team": "النصر",
+    "home_team_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Jeddah_Club_logo.png/220px-Jeddah_Club_logo.png",
+    "away_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Al-Nassr_FC.svg/1200px-Al-Nassr_FC.svg.png",
+    "match_date": "2025-09-23",
+    "match_time": "22:30",
+    "full_time_score": "",
+    "status": "لم تبدأ",
+    "match_url": "",
+    "last_updated": "2025-09-23T11:23:40.000000"
+  },
+  "saudi_match_20250923_03": {
+    "match_id": "saudi_match_20250923_03",
+    "league_name": "كأس القارات للأندية",
+    "home_team": "الأهلي",
+    "away_team": "بيراميدز",
+    "home_team_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Al-Ahli_Saudi_FC_logo.svg/1200px-Al-Ahli_Saudi_FC_logo.svg.png",
+    "away_team_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Pyramids_FC_logo.png/220px-Pyramids_FC_logo.png",
+    "match_date": "2025-09-23",
+    "match_time": "22:00",
+    "full_time_score": "",
+    "status": "لم تبدأ",
+    "match_url": "",
+    "last_updated": "2025-09-23T11:23:40.000000"
+  }
 }
